@@ -12,12 +12,12 @@
 <summary>Week 02 — Pengenalan .NET dan Sistem Manajemen Data Mahasiswa</summary>
 
 Tugas pengenalan struktur dasar C# dan implementasi *Console Application*.
-[Lihat Dokumentasi Week 01](./Week-01/README.md)
+[Week 02](./Week-02/README.md)
 
 </details>
 
 <details>
-<summary>Week 03 — Belum Tersedia</summary>
+<summary>Week 03 — </summary>
 Dokumentasi akan ditambahkan setelah penugasan Week 03 diberikan.
 </details>
 

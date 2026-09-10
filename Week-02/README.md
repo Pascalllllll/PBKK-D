@@ -50,6 +50,3 @@ Berikut adalah hasil eksekusi program melalui terminal:
 
 ### Menghapus Data Mahasiswa
 ![Screenshot Hapus Data](./assets/hapus.png)
-
-## 6. Kesimpulan
-Tugas ini berhasil mengimplementasikan aplikasi manajemen data mahasiswa sederhana. Penggunaan arsitektur berbasis Object-Oriented Programming (OOP) dasar dengan memisahkan model data (`Mahasiswa.cs`) dan alur eksekusi (`Program.cs`) membuat kode sumber menjadi lebih modular dan mudah dikelola. Sistem juga telah dilengkapi dengan validasi input dasar untuk menjaga stabilitas program.
