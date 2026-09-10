@@ -1,4 +1,4 @@
-# Week 01 — Pengenalan .NET dan Sistem Manajemen Data Mahasiswa
+# Week 02 — Pengenalan .NET dan Sistem Manajemen Data Mahasiswa
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  
@@ -12,6 +12,8 @@ Implementasi dasar untuk memahami mekanisme output pada terminal.
 ```csharp
 Console.WriteLine("Hello, World!");
 ```
+
+![alt text](image.png)
 
 **Penjelasan Teknis:**
 * `Console`: Kelas statis bawaan dari namespace `System` yang merepresentasikan standar input, output, dan error stream pada aplikasi konsol.
@@ -37,7 +39,6 @@ Berkas ini memuat logika utama, antarmuka pengguna berbasis teks, dan manipulasi
 * **Operasi Pencarian String**: Pencarian dan penghapusan data berdasarkan NIM menggunakan metode komparasi string `.Equals(nimCari, StringComparison.OrdinalIgnoreCase)` agar pencarian tidak sensitif terhadap huruf kapital atau kecil (case-insensitive).
 
 ## 5. Dokumentasi
-Berikut adalah hasil eksekusi program melalui terminal:
 
 ### Menambah Data Mahasiswa
 ![Screenshot Tambah Data](./assets/tambah.png)

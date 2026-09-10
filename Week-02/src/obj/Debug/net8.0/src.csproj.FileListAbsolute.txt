@@ -1,0 +1,15 @@
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/bin/Debug/net8.0/src
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/bin/Debug/net8.0/src.deps.json
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/bin/Debug/net8.0/src.runtimeconfig.json
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/bin/Debug/net8.0/src.dll
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/bin/Debug/net8.0/src.pdb
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.AssemblyInfoInputs.cache
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.AssemblyInfo.cs
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.csproj.CoreCompileInputs.cache
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.sourcelink.json
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.dll
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/refint/src.dll
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.pdb
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/src.genruntimeconfig.cache
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-02/src/obj/Debug/net8.0/ref/src.dll
