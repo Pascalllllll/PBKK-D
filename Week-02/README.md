@@ -13,7 +13,7 @@ Implementasi dasar untuk memahami mekanisme output pada terminal.
 Console.WriteLine("Hello, World!");
 ```
 
-![alt text](image.png)
+<img src="image.png" width="300">
 
 **Penjelasan Teknis:**
 * `Console`: Kelas statis bawaan dari namespace `System` yang merepresentasikan standar input, output, dan error stream pada aplikasi konsol.
@@ -26,7 +26,7 @@ Berkas ini bertindak sebagai model data (blueprint) untuk entitas mahasiswa. Imp
 
 **Penjelasan Teknis:**
 * **Namespace (`DataMahasiswa`)**: Digunakan untuk mengorganisasi kelas dan mencegah konflik penamaan (name collision) dengan blok kode lain.
-* **Properti**: Menggunakan sintaks `{ get; set; }` (auto-implemented properties) untuk atribut `NIM`, `Nama`, `Prodi`, dan `IPK`. Mekanisme ini menerapkan konsep enkapsulasi dasar tanpa memerlukan deklarasi variabel secara manual.
+* **Properti**: Menggunakan sintaks `{ get; set; }` (auto-implemented properties) untuk atribut `NRP`, `Nama`, `Prodi`, dan `IPK`. Mekanisme ini menerapkan konsep enkapsulasi dasar tanpa memerlukan deklarasi variabel secara manual.
 * **Konstruktor**: Metode khusus `public Mahasiswa(...)` yang dieksekusi saat instansiasi objek baru menggunakan kata kunci `new`. Berfungsi untuk menginisialisasi nilai awal dari properti objek berdasarkan argumen yang dikirimkan.
 
 ## 4. Pusat Kendali Program: `Program.cs`
@@ -36,18 +36,29 @@ Berkas ini memuat logika utama, antarmuka pengguna berbasis teks, dan manipulasi
 * **Penyimpanan Data Dinamis**: Menggunakan `List<Mahasiswa>` dari namespace `System.Collections.Generic`. Berbeda dengan array statis, koleksi ini bersifat dinamis sehingga ukurannya dapat menyesuaikan jumlah data saat runtime.
 * **Alur Eksekusi Utama (`Main`)**: Dikendalikan oleh blok perulangan `do-while` yang akan terus mengeksekusi antarmuka menu hingga pengguna memberikan instruksi terminasi.
 * **Validasi Tipe Data**: Menggunakan `int.TryParse` dan `double.TryParse` saat membaca input. Metode ini mencegah runtime exception (program terhenti mendadak) apabila pengguna memasukkan format karakter yang tidak valid (misalnya huruf pada kolom angka).
-* **Operasi Pencarian String**: Pencarian dan penghapusan data berdasarkan NIM menggunakan metode komparasi string `.Equals(nimCari, StringComparison.OrdinalIgnoreCase)` agar pencarian tidak sensitif terhadap huruf kapital atau kecil (case-insensitive).
+* **Operasi Pencarian String**: Pencarian dan penghapusan data berdasarkan NRP menggunakan metode komparasi string `.Equals(nrpCari, StringComparison.OrdinalIgnoreCase)` agar pencarian tidak sensitif terhadap huruf kapital atau kecil (case-insensitive).
 
 ## 5. Dokumentasi
 
+### Tampilan Awal
+<img src="image-1.png" width="600">
+
 ### Menambah Data Mahasiswa
-![Screenshot Tambah Data](./assets/tambah.png)
+<img src="image-2.png" width="600">
 
 ### Menampilkan Data Mahasiswa
-![Screenshot Tampil Data](./assets/tampil.png)
+<img src="image-3.png" width="600">
 
 ### Mencari Data Mahasiswa
-![Screenshot Cari Data](./assets/cari.png)
+<img src="image-4.png" width="600">
+
+<br>
+
+<img src="image-5.png" width="600">
 
 ### Menghapus Data Mahasiswa
-![Screenshot Hapus Data](./assets/hapus.png)
+<img src="image-6.png" width="600">
+
+<br>
+
+<img src="image-7.png" width="600">
