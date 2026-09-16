@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "f7c1mCcQKD8=",
+  "success": true,
+  "projectFilePath": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/Kalkulator.csproj",
+  "expectedPackageFiles": [
+    "/home/hosee/.nuget/packages/microsoft.windowsdesktop.app.ref/8.0.31/microsoft.windowsdesktop.app.ref.8.0.31.nupkg.sha512"
+  ],
+  "logs": []
+}

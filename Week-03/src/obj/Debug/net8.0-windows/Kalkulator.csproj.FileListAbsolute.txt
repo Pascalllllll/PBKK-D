@@ -1,0 +1,15 @@
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/bin/Debug/net8.0-windows/Kalkulator
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/bin/Debug/net8.0-windows/Kalkulator.deps.json
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/bin/Debug/net8.0-windows/Kalkulator.runtimeconfig.json
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/bin/Debug/net8.0-windows/Kalkulator.dll
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/bin/Debug/net8.0-windows/Kalkulator.pdb
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.AssemblyInfoInputs.cache
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.AssemblyInfo.cs
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.csproj.CoreCompileInputs.cache
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.sourcelink.json
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.dll
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/refint/Kalkulator.dll
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.pdb
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/Kalkulator.genruntimeconfig.cache
+/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/Debug/net8.0-windows/ref/Kalkulator.dll
