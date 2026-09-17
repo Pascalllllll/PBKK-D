@@ -1,4 +1,4 @@
-# Week 02 — Pengenalan .NET dan Sistem Manajemen Data Mahasiswa
+# Week 02 - Pengenalan .NET dan Sistem Manajemen Data Mahasiswa
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  

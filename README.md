@@ -9,14 +9,14 @@
 ## Daftar
 
 <details>
-<summary>Week 02 — Pengenalan .NET dan Sistem Manajemen Data Mahasiswa</summary>
+<summary>Week 02 - Pengenalan .NET dan Sistem Manajemen Data Mahasiswa</summary>
 
 [Week 02](./Week-02/README.md)
 
 </details>
 
 <details>
-<summary>Week 03</summary>
+<summary>Week 03 - Membuat Aplikasi Kalkulator Sederhana</summary>
 
 [Week 03](./Week-03/README.md)
 

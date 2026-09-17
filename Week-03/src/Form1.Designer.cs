@@ -25,10 +25,10 @@ namespace Kalkulator
             // txtDisplay
             // 
             this.txtDisplay.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold);
-            this.txtDisplay.Location = new System.Drawing.Point(12, 45);
+            this.txtDisplay.Location = new System.Drawing.Point(24, 90);
             this.txtDisplay.Name = "txtDisplay";
             this.txtDisplay.ReadOnly = true;
-            this.txtDisplay.Size = new System.Drawing.Size(336, 71);
+            this.txtDisplay.Size = new System.Drawing.Size(672, 142);
             this.txtDisplay.TabIndex = 0;
             this.txtDisplay.Text = "0";
             this.txtDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -36,9 +36,9 @@ namespace Kalkulator
             // 
             // lblHistory
             // 
-            this.lblHistory.Location = new System.Drawing.Point(12, 15);
+            this.lblHistory.Location = new System.Drawing.Point(24, 30);
             this.lblHistory.Name = "lblHistory";
-            this.lblHistory.Size = new System.Drawing.Size(336, 20);
+            this.lblHistory.Size = new System.Drawing.Size(672, 40);
             this.lblHistory.TabIndex = 1;
             this.lblHistory.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
@@ -53,11 +53,11 @@ namespace Kalkulator
                 { "+/-", "0", ".", "" }
             };
 
-            int startX = 12;
-            int startY = 130;
-            int btnWidth = 80;
-            int btnHeight = 60;
-            int spacing = 5;
+            int startX = 24;
+            int startY = 245;
+            int btnWidth = 160;
+            int btnHeight = 120;
+            int spacing = 10;
 
             for (int row = 0; row < 6; row++)
             {
@@ -112,9 +112,9 @@ namespace Kalkulator
             this.Controls.Add(this.lblHistory);
             this.Controls.Add(this.txtDisplay);
             
-            this.ClientSize = new System.Drawing.Size(360, 520);
+            this.ClientSize = new System.Drawing.Size(720, 1040);
             this.Name = "Form1";
-            this.Text = "Kalkulator - Hosea Felix Sanjaya (5025241177)";
+            this.Text = "Kalkulator";
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

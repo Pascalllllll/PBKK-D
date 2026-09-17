@@ -1,4 +1,4 @@
-# Week 02 — Implementasi Kalkulator GUI dengan Windows Forms
+# Week 03 - Membuat Aplikasi Kalkulator Sederhana
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  
@@ -26,15 +26,26 @@ Berkas ini menangani seluruh *event handler* dari interaksi tombol serta modifik
 ## 4. Penanganan Kesalahan (Exception Handling)
 Implementasi blok `try-catch` disertakan pada proses kalkulasi akhir (tombol sama dengan) untuk menangkal penghentian aplikasi secara paksa (*crash*). Kasus spesifik seperti `DivideByZeroException` ditangkap secara manual ketika pengguna mencoba membagi nilai dengan angka 0, lalu merespons dengan memunculkan `MessageBox` berisi pesan peringatan.
 
-## 5. Dokumentasi Pengujian
-Berikut adalah hasil kompilasi dan eksekusi program dengan fitur tambahan dan tema biru:
+## 5. Dokumentasi
 
-### Tampilan Utama Kalkulator
-<kbd><img src="./assets/main-view.png" width="600"></kbd>
+### Tampilan Awal
+<img src="image-1.png" width="600">
 
-### Uji Coba Fitur Tambahan (Akar/Kuadrat/Persen)
-<kbd><img src="./assets/advanced-calc.png" width="600"></kbd>
+### Melakukan Penambahan
+<img src="image-2.png" width="600">
 
-### Penanganan Pembagian dengan Nol
-<kbd><img src="./assets/divide-zero.png" width="600"></kbd>
+### Melakukan Pengurangan
+<img src="image-3.png" width="600">
+
+### Melakukan Perkalian
+<img src="image-4.png" width="600">
+
+### Melakukan Pembagian
+<img src="image-6.png" width="600">
+
+### Melakukan Akar
+<img src="image-7.png" width="600">
+
+### Melakukan Persen
+<img src="image-8.png" width="600">
 

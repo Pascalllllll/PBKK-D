@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/Kalkulator.csproj": {}
+    "D:\\Coding\\Semester 5\\PBKK-D\\Week-03\\src\\Kalkulator.csproj": {}
   },
   "projects": {
-    "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/Kalkulator.csproj": {
+    "D:\\Coding\\Semester 5\\PBKK-D\\Week-03\\src\\Kalkulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/Kalkulator.csproj",
+        "projectUniqueName": "D:\\Coding\\Semester 5\\PBKK-D\\Week-03\\src\\Kalkulator.csproj",
         "projectName": "Kalkulator",
-        "projectPath": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/Kalkulator.csproj",
-        "packagesPath": "/home/hosee/.nuget/packages/",
-        "outputPath": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/obj/",
+        "projectPath": "D:\\Coding\\Semester 5\\PBKK-D\\Week-03\\src\\Kalkulator.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "D:\\Coding\\Semester 5\\PBKK-D\\Week-03\\src\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/hosee/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
@@ -53,12 +53,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.31, 8.0.31]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -67,7 +61,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/hosee/.dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.425/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
