@@ -2,12 +2,25 @@
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  
+**Kelas**: PBKK D
 
 ## 1. Tujuan
-Memahami fundamental bahasa pemrograman C# pada kerangka kerja .NET melalui pembuatan aplikasi konsol (Console Application). Fokus utama meliputi pemahaman sintaksis dasar, pembuatan model data (class dan object), penanganan input/output, serta operasi dasar koleksi data (List).
+Belajar dasar C# di .NET lewat aplikasi konsol: sintaks dasar, class dan object, input/output di terminal, dan menyimpan data di `List`.
 
-## 2. Uji Coba Sintaks Dasar (Hello World)
-Implementasi dasar untuk memahami mekanisme output pada terminal.
+## 2. Struktur Project
+
+```
+Week-02/
+├── README.md
+├── image*.png
+└── src/
+    ├── Mahasiswa.cs
+    └── Program.cs
+```
+
+## 3. Penjelasan Kode
+
+### Hello World
 
 ```csharp
 Console.WriteLine("Hello, World!");
@@ -15,28 +28,26 @@ Console.WriteLine("Hello, World!");
 
 <img src="image.png" width="300">
 
-**Penjelasan Teknis:**
-* `Console`: Kelas statis bawaan dari namespace `System` yang merepresentasikan standar input, output, dan error stream pada aplikasi konsol.
-* `WriteLine`: Metode dari kelas `Console` yang bertugas mencetak parameter string ke layar dan secara otomatis menambahkan karakter baris baru (new line) pada akhir string.
-* `"Hello, World!"`: Argumen berupa tipe data string.
-* `;`: Terminator wajib dalam C# yang mengindikasikan akhir dari sebuah pernyataan (statement).
+`Console.WriteLine` mencetak teks ke terminal lalu pindah ke baris baru. `Console` berasal dari namespace `System`.
 
-## 3. Arsitektur Data: `Mahasiswa.cs`
-Berkas ini bertindak sebagai model data (blueprint) untuk entitas mahasiswa. Implementasi lengkap berada pada `src/Mahasiswa.cs`.
+### `Mahasiswa.cs`
 
-**Penjelasan Teknis:**
-* **Namespace (`DataMahasiswa`)**: Digunakan untuk mengorganisasi kelas dan mencegah konflik penamaan (name collision) dengan blok kode lain.
-* **Properti**: Menggunakan sintaks `{ get; set; }` (auto-implemented properties) untuk atribut `NRP`, `Nama`, `Prodi`, dan `IPK`. Mekanisme ini menerapkan konsep enkapsulasi dasar tanpa memerlukan deklarasi variabel secara manual.
-* **Konstruktor**: Metode khusus `public Mahasiswa(...)` yang dieksekusi saat instansiasi objek baru menggunakan kata kunci `new`. Berfungsi untuk menginisialisasi nilai awal dari properti objek berdasarkan argumen yang dikirimkan.
+* Class `Mahasiswa` punya empat properti: `NRP`, `Nama`, `Prodi`, dan `IPK`, ditulis dengan `{ get; set; }` sehingga tidak perlu field terpisah.
+* Konstruktor mengisi keempat properti itu saat object dibuat dengan `new Mahasiswa(...)`.
 
-## 4. Pusat Kendali Program: `Program.cs`
-Berkas ini memuat logika utama, antarmuka pengguna berbasis teks, dan manipulasi data. Implementasi lengkap berada pada `src/Program.cs`.
+### `Program.cs`
 
-**Penjelasan Teknis Utama:**
-* **Penyimpanan Data Dinamis**: Menggunakan `List<Mahasiswa>` dari namespace `System.Collections.Generic`. Berbeda dengan array statis, koleksi ini bersifat dinamis sehingga ukurannya dapat menyesuaikan jumlah data saat runtime.
-* **Alur Eksekusi Utama (`Main`)**: Dikendalikan oleh blok perulangan `do-while` yang akan terus mengeksekusi antarmuka menu hingga pengguna memberikan instruksi terminasi.
-* **Validasi Tipe Data**: Menggunakan `int.TryParse` dan `double.TryParse` saat membaca input. Metode ini mencegah runtime exception (program terhenti mendadak) apabila pengguna memasukkan format karakter yang tidak valid (misalnya huruf pada kolom angka).
-* **Operasi Pencarian String**: Pencarian dan penghapusan data berdasarkan NRP menggunakan metode komparasi string `.Equals(nrpCari, StringComparison.OrdinalIgnoreCase)` agar pencarian tidak sensitif terhadap huruf kapital atau kecil (case-insensitive).
+* Data disimpan di `List<Mahasiswa>`, yang ukurannya bertambah sendiri tiap ada data baru. Data hanya ada di memori dan hilang saat program ditutup.
+* `Main` menjalankan menu dalam loop `do-while` sampai pengguna memilih opsi 5 (keluar).
+* Input angka dibaca dengan `int.TryParse` dan `double.TryParse`, jadi kalau pengguna mengetik huruf, program tidak crash dan meminta input ulang. IPK juga dicek harus di antara 0 dan 4.
+* Cari dan hapus data memakai `StringComparison.OrdinalIgnoreCase`, jadi huruf besar atau kecil pada NRP tidak berpengaruh.
+
+## 4. Cara Menjalankan
+
+```bash
+cd Week-02/src
+dotnet run
+```
 
 ## 5. Dokumentasi
 

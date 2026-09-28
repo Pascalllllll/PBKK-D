@@ -1,6 +1,4 @@
-# PBKK-D
-
-# Pemrograman Berbasis Kerangka Kerja (PBKK)
+# Pemrograman Berbasis Kerangka Kerja (PBKK) - Kelas D
 
 |    NRP     |      Name      |
 | :--------: | :------------: |
@@ -23,7 +21,7 @@
 </details>
 
 <details>
-<summary>Week 04</summary>
+<summary>Week 04 - Aplikasi Desktop Registrasi Mahasiswa (Avalonia)</summary>
 
 [Week 04](./Week-04/README.md)
 

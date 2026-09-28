@@ -1,0 +1,171 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="StudentRegistrationApp.MainWindow"
+        Title="Registrasi Mahasiswa"
+        Width="1180" Height="740"
+        MinWidth="960" MinHeight="620"
+        Background="#F4F5F7"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Styles>
+        <Style Selector="Border.panel">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DDE1E6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <Style Selector="TextBlock.fieldLabel">
+            <Setter Property="Foreground" Value="#3F4650"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,10,0,4"/>
+        </Style>
+
+        <Style Selector="TextBlock.statLabel">
+            <Setter Property="Foreground" Value="#5F6773"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style Selector="TextBlock.statValue">
+            <Setter Property="Foreground" Value="#15191E"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+
+        <Style Selector="TextBox, ComboBox">
+            <Setter Property="MinHeight" Value="38"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="16,9"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#0F766E"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#115E59"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.danger">
+            <Setter Property="Background" Value="#B42318"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.danger:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#912018"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="28" RowDefinitions="Auto,Auto,*,Auto">
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Registrasi Mahasiswa" FontSize="28" FontWeight="Bold" Foreground="#15191E"/>
+            <TextBlock Text="Hosea Felix Sanjaya · 5025241177" Foreground="#5F6773" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,20" ColumnDefinitions="*,16,*,16,*">
+            <Border Grid.Column="0" Classes="panel">
+                <StackPanel>
+                    <TextBlock Classes="statLabel" Text="Jumlah mahasiswa"/>
+                    <TextBlock Classes="statValue" x:Name="TxtTotal" Text="0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" Classes="panel">
+                <StackPanel>
+                    <TextBlock Classes="statLabel" Text="Rata-rata IPK"/>
+                    <TextBlock Classes="statValue" x:Name="TxtRataRata" Text="-"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="4" Classes="panel">
+                <StackPanel>
+                    <TextBlock Classes="statLabel" Text="IPK tertinggi"/>
+                    <TextBlock Classes="statValue" x:Name="TxtTertinggi" Text="-"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" ColumnDefinitions="340,20,*">
+
+            <Border Grid.Column="0" Classes="panel">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock x:Name="TxtFormTitle" Text="Tambah mahasiswa" FontSize="19" FontWeight="Bold" Foreground="#15191E"/>
+
+                        <TextBlock Classes="fieldLabel" Text="NRP"/>
+                        <TextBox x:Name="InputNrp" PlaceholderText="5025241177" MaxLength="10"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Nama"/>
+                        <TextBox x:Name="InputNama" PlaceholderText="Nama lengkap"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Program studi"/>
+                        <ComboBox x:Name="InputProdi" HorizontalAlignment="Stretch" PlaceholderText="Pilih program studi">
+                            <ComboBoxItem Content="Teknik Informatika"/>
+                            <ComboBoxItem Content="Sistem Informasi"/>
+                            <ComboBoxItem Content="Teknik Komputer"/>
+                            <ComboBoxItem Content="Teknologi Informasi"/>
+                            <ComboBoxItem Content="Sains Data"/>
+                        </ComboBox>
+
+                        <TextBlock Classes="fieldLabel" Text="IPK"/>
+                        <TextBox x:Name="InputIpk" PlaceholderText="3.50"/>
+
+                        <TextBlock x:Name="TxtError" Foreground="#B42318" TextWrapping="Wrap"
+                                   Margin="0,12,0,0" IsVisible="False"/>
+
+                        <Grid Margin="0,18,0,0" ColumnDefinitions="*,10,*">
+                            <Button Grid.Column="0" x:Name="BtnSimpan" Classes="primary"
+                                    HorizontalAlignment="Stretch" Content="Simpan" Click="BtnSimpan_Click"/>
+                            <Button Grid.Column="2" x:Name="BtnBatal"
+                                    HorizontalAlignment="Stretch" Content="Kosongkan" Click="BtnBatal_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <Border Grid.Column="2" Classes="panel">
+                <Grid RowDefinitions="Auto,Auto,*,Auto">
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Daftar mahasiswa" FontSize="19" FontWeight="Bold" Foreground="#15191E"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtJumlahTampil" Foreground="#5F6773"
+                                   VerticalAlignment="Center" Text="0 data"/>
+                    </Grid>
+
+                    <TextBox Grid.Row="1" x:Name="InputCari" Margin="0,14"
+                             PlaceholderText="Cari NRP, nama, atau prodi"
+                             TextChanged="InputCari_TextChanged"/>
+
+                    <DataGrid Grid.Row="2" x:Name="GridMahasiswa"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              SelectionMode="Single" GridLinesVisibility="Horizontal"
+                              CanUserSortColumns="True"
+                              SelectionChanged="GridMahasiswa_SelectionChanged"
+                              DoubleTapped="GridMahasiswa_DoubleTapped">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="NRP" Binding="{Binding NRP}" Width="1.2*"/>
+                            <DataGridTextColumn Header="Nama" Binding="{Binding Nama}" Width="2*"/>
+                            <DataGridTextColumn Header="Program studi" Binding="{Binding Prodi}" Width="1.8*"/>
+                            <DataGridTextColumn Header="IPK" Binding="{Binding IPKText}" SortMemberPath="IPK" Width="0.7*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10" Margin="0,14,0,0">
+                        <Button x:Name="BtnEdit" Content="Edit" IsEnabled="False" Click="BtnEdit_Click"/>
+                        <Button x:Name="BtnHapus" Classes="danger" Content="Hapus" IsEnabled="False" Click="BtnHapus_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <TextBlock Grid.Row="3" x:Name="TxtStatus" Foreground="#5F6773" Margin="0,14,0,0"
+                   Text="Belum ada data. Isi form di kiri untuk menambah mahasiswa."/>
+    </Grid>
+</Window>

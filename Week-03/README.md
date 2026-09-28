@@ -2,29 +2,53 @@
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  
+**Kelas**: PBKK D
 
 ## 1. Tujuan
-Membangun aplikasi desktop berbasis antarmuka grafis (GUI) menggunakan Windows Forms pada platform .NET. Fokus pada pengelolaan interaksi pengguna melalui sistem kendali *event-driven*, modifikasi properti komponen secara terprogram, serta implementasi logika aritmatika standar dan lanjutan.
+Membuat kalkulator desktop dengan Windows Forms di .NET. Tiap tombol punya event handler sendiri, tampilan diatur lewat kode, dan kalkulator mendukung operasi dasar serta kuadrat, akar, persen, dan ganti tanda.
 
-## 2. Struktur Eksekusi Utama: `CalculatorProgram.cs`
-Berkas ini bertindak sebagai titik masuk (*entry point*) aplikasi yang mengatur inisialisasi lingkungan antarmuka sebelum memuat form utama.
+## 2. Struktur Project
 
-**Penjelasan Teknis:**
-* `[STAThread]`: Atribut wajib untuk aplikasi Windows Forms yang menginstruksikan sistem operasi agar menggunakan model *Single-Threaded Apartment*, memastikan komponen UI dapat berkomunikasi dengan aman tanpa konflik memori.
-* `ApplicationConfiguration.Initialize()`: Menerapkan konfigurasi visual modern bawaan sistem operasi.
-* `Application.Run(new Form1())`: Menginstansiasi objek form utama dan memasukkannya ke dalam siklus pemrosesan *message loop* agar program terus berjalan hingga jendela ditutup.
+```
+Week-03/
+├── README.md
+├── image*.png
+└── src/
+    ├── Kalkulator.csproj
+    ├── Program.cs
+    ├── Form1.cs
+    └── Form1.Designer.cs
+```
 
-## 3. Pusat Kendali Logika dan UI: `Form1.cs`
-Berkas ini menangani seluruh *event handler* dari interaksi tombol serta modifikasi tampilan secara dinamis.
+## 3. Penjelasan Kode
 
-**Pembaruan Fitur Lanjutan:**
-* **Modifikasi Tema Dinamis (`ApplyBlueTheme`)**: Fungsi iteratif yang menyisir struktur kendali (`Controls`) pada form saat aplikasi dimuat. Fungsi ini memodifikasi atribut `BackColor`, `ForeColor`, dan `FlatStyle` pada setiap elemen untuk menghasilkan tema visual dominan biru secara seragam tanpa perlu mengubah properti di desainer satu per satu.
-* **Kuadrat dan Akar (`Math.Pow` & `Math.Sqrt`)**: Memanfaatkan pustaka matematika bawaan .NET untuk mengeksekusi operasi pangkat dua dan akar kuadrat langsung pada nilai yang tertera di layar. Dilengkapi dengan validasi kondisi (`value >= 0`) untuk mencegah perhitungan akar dari bilangan negatif.
-* **Persentase (`%`)**: Mengkonversi nilai yang sedang aktif di layar menjadi representasi desimal (dibagi 100) tanpa memerlukan operan kedua.
-* **Toggling Negasi (`+/-`)**: Memanipulasi string secara langsung menggunakan `.StartsWith("-")` dan `.Substring(1)` untuk menginversi tanda bilangan tanpa mengubah nilai absolutnya.
+### `Kalkulator.csproj`
+Target `net8.0-windows` dengan `UseWindowsForms` aktif. `EnableWindowsTargeting` membuat project tetap bisa di-build dari Linux, tapi aplikasinya hanya bisa dijalankan di Windows.
 
-## 4. Penanganan Kesalahan (Exception Handling)
-Implementasi blok `try-catch` disertakan pada proses kalkulasi akhir (tombol sama dengan) untuk menangkal penghentian aplikasi secara paksa (*crash*). Kasus spesifik seperti `DivideByZeroException` ditangkap secara manual ketika pengguna mencoba membagi nilai dengan angka 0, lalu merespons dengan memunculkan `MessageBox` berisi pesan peringatan.
+### `Program.cs`
+
+* `[STAThread]` wajib ada di aplikasi Windows Forms supaya komponen UI berjalan di satu thread.
+* `ApplicationConfiguration.Initialize()` memakai gaya visual bawaan Windows.
+* `Application.Run(new Form1())` membuka form utama dan menjaga program tetap berjalan sampai jendelanya ditutup.
+
+### `Form1.cs`
+
+* **Tema (`ApplyBlueTheme`)**: dipanggil sekali di konstruktor. Fungsi ini melewati semua kontrol di form dan mengatur warna berdasarkan jenisnya: `=` biru, `C` dan `⌫` merah, operator biru tua, angka abu-abu. Jadi warna tidak perlu diatur satu per satu di designer.
+* **Kuadrat dan akar**: memakai `Math.Pow` dan `Math.Sqrt`. Akar dari bilangan negatif ditolak dengan pesan error.
+* **Persen**: angka di layar dibagi 100.
+* **`+/-`**: menambah atau menghapus tanda `-` di depan teks angka.
+* **Penanganan error**: tombol `=` dibungkus `try-catch`. Pembagian dengan nol melempar `DivideByZeroException`, lalu pesannya ditampilkan lewat `MessageBox`, jadi aplikasi tidak crash.
+
+### `Form1.Designer.cs`
+Dibuat otomatis oleh designer Visual Studio. Isinya posisi tombol, layar, dan label riwayat operasi.
+
+## 4. Cara Menjalankan
+Hanya bisa dijalankan di Windows.
+
+```bash
+cd Week-03/src
+dotnet run
+```
 
 ## 5. Dokumentasi
 
@@ -48,4 +72,3 @@ Implementasi blok `try-catch` disertakan pada proses kalkulasi akhir (tombol sam
 
 ### Melakukan Persen
 <img src="image-8.png" width="600">
-
