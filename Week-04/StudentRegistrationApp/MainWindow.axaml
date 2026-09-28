@@ -101,10 +101,10 @@
                         <TextBlock x:Name="TxtFormTitle" Text="Tambah mahasiswa" FontSize="19" FontWeight="Bold" Foreground="#15191E"/>
 
                         <TextBlock Classes="fieldLabel" Text="NRP"/>
-                        <TextBox x:Name="InputNrp" PlaceholderText="5025241177" MaxLength="10"/>
+                        <TextBox x:Name="InputNrp" Watermark="5025241177" MaxLength="10"/>
 
                         <TextBlock Classes="fieldLabel" Text="Nama"/>
-                        <TextBox x:Name="InputNama" PlaceholderText="Nama lengkap"/>
+                        <TextBox x:Name="InputNama" Watermark="Nama lengkap"/>
 
                         <TextBlock Classes="fieldLabel" Text="Program studi"/>
                         <ComboBox x:Name="InputProdi" HorizontalAlignment="Stretch" PlaceholderText="Pilih program studi">
@@ -116,7 +116,7 @@
                         </ComboBox>
 
                         <TextBlock Classes="fieldLabel" Text="IPK"/>
-                        <TextBox x:Name="InputIpk" PlaceholderText="3.50"/>
+                        <TextBox x:Name="InputIpk" Watermark="3.50"/>
 
                         <TextBlock x:Name="TxtError" Foreground="#B42318" TextWrapping="Wrap"
                                    Margin="0,12,0,0" IsVisible="False"/>
@@ -140,7 +140,7 @@
                     </Grid>
 
                     <TextBox Grid.Row="1" x:Name="InputCari" Margin="0,14"
-                             PlaceholderText="Cari NRP, nama, atau prodi"
+                             Watermark="Cari NRP, nama, atau prodi"
                              TextChanged="InputCari_TextChanged"/>
 
                     <DataGrid Grid.Row="2" x:Name="GridMahasiswa"

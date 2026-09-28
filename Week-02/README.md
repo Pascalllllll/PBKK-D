@@ -12,7 +12,7 @@ Belajar dasar C# di .NET lewat aplikasi konsol: sintaks dasar, class dan object,
 ```
 Week-02/
 ├── README.md
-├── image*.png
+├── img/
 └── src/
     ├── Mahasiswa.cs
     └── Program.cs
@@ -26,7 +26,7 @@ Week-02/
 Console.WriteLine("Hello, World!");
 ```
 
-<img src="image.png" width="300">
+<img src="img/01-hello-world.png" width="300">
 
 `Console.WriteLine` mencetak teks ke terminal lalu pindah ke baris baru. `Console` berasal dari namespace `System`.
 
@@ -52,24 +52,24 @@ dotnet run
 ## 5. Dokumentasi
 
 ### Tampilan Awal
-<img src="image-1.png" width="600">
+<img src="img/02-tampilan-awal.png" width="600">
 
 ### Menambah Data Mahasiswa
-<img src="image-2.png" width="600">
+<img src="img/03-tambah-data.png" width="600">
 
 ### Menampilkan Data Mahasiswa
-<img src="image-3.png" width="600">
+<img src="img/04-lihat-data.png" width="600">
 
 ### Mencari Data Mahasiswa
-<img src="image-4.png" width="600">
+<img src="img/05-cari-tidak-ditemukan.png" width="600">
 
 <br>
 
-<img src="image-5.png" width="600">
+<img src="img/06-cari-ditemukan.png" width="600">
 
 ### Menghapus Data Mahasiswa
-<img src="image-6.png" width="600">
+<img src="img/07-hapus-data.png" width="600">
 
 <br>
 
-<img src="image-7.png" width="600">
+<img src="img/08-lihat-setelah-hapus.png" width="600">

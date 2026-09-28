@@ -19,6 +19,7 @@ Fitur:
 ```
 Week-04/
 ├── README.md
+├── img/
 └── StudentRegistrationApp/
     ├── StudentRegistrationApp.csproj
     ├── Program.cs
@@ -67,16 +68,33 @@ dotnet run
 
 ## 5. Dokumentasi
 
-<!-- Simpan screenshot di Week-04/img/ lalu isi bagian di bawah. -->
-
 ### Tampilan Awal
+<img src="img/01-tampilan-awal.png" width="600">
 
 ### Menambah Data Mahasiswa
+<img src="img/02-tambah-data-1.png" width="600">
 
-### Validasi Input
+<br>
+
+<img src="img/03-tambah-data-2.png" width="600">
 
 ### Mencari Data Mahasiswa
+<img src="img/04-cari-data.png" width="600">
 
 ### Mengedit Data Mahasiswa
+<img src="img/05-edit-data.png" width="600">
+
+<br>
+
+<img src="img/06-edit-berhasil.png" width="600">
 
 ### Menghapus Data Mahasiswa
+<img src="img/07-pilih-data-hapus.png" width="600">
+
+<br>
+
+<img src="img/08-konfirmasi-hapus.png" width="600">
+
+<br>
+
+<img src="img/09-hapus-berhasil.png" width="600">

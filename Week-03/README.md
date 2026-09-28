@@ -12,7 +12,7 @@ Membuat kalkulator desktop dengan Windows Forms di .NET. Tiap tombol punya event
 ```
 Week-03/
 ├── README.md
-├── image*.png
+├── img/
 └── src/
     ├── Kalkulator.csproj
     ├── Program.cs
@@ -53,22 +53,22 @@ dotnet run
 ## 5. Dokumentasi
 
 ### Tampilan Awal
-<img src="image-1.png" width="600">
+<img src="img/01-tampilan-awal.png" width="600">
 
 ### Melakukan Penambahan
-<img src="image-2.png" width="600">
+<img src="img/02-penambahan.png" width="600">
 
 ### Melakukan Pengurangan
-<img src="image-3.png" width="600">
+<img src="img/03-pengurangan.png" width="600">
 
 ### Melakukan Perkalian
-<img src="image-4.png" width="600">
+<img src="img/04-perkalian.png" width="600">
 
 ### Melakukan Pembagian
-<img src="image-6.png" width="600">
+<img src="img/05-pembagian.png" width="600">
 
 ### Melakukan Akar
-<img src="image-7.png" width="600">
+<img src="img/06-akar.png" width="600">
 
 ### Melakukan Persen
-<img src="image-8.png" width="600">
+<img src="img/07-persen.png" width="600">
