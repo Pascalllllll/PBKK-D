@@ -4,7 +4,7 @@
         x:Class="StudentRegistrationMVVM.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="Registrasi Mahasiswa (MVVM + MySQL)"
-        Width="1240" Height="780"
+        Width="1320" Height="780"
         MinWidth="1000" MinHeight="640"
         Background="#F4F5F7"
         WindowStartupLocation="CenterScreen">
@@ -69,7 +69,7 @@
             <TextBlock Text="Hosea Felix Sanjaya · 5025241177" Foreground="#5F6773" Margin="0,4,0,0"/>
         </StackPanel>
 
-        <Grid Grid.Row="1" ColumnDefinitions="360,20,*">
+        <Grid Grid.Row="1" ColumnDefinitions="340,20,*">
 
             <Border Grid.Column="0" Classes="panel">
                 <ScrollViewer>
@@ -104,10 +104,10 @@
                         <TextBlock Text="{Binding PesanForm}" IsVisible="{Binding AdaPesanForm}"
                                    Foreground="#B42318" TextWrapping="Wrap" Margin="0,12,0,0"/>
 
-                        <Grid Margin="0,18,0,0" ColumnDefinitions="*,10,*">
-                            <Button Grid.Column="0" Classes="primary" HorizontalAlignment="Stretch"
+                        <Grid Margin="0,18,0,0" ColumnDefinitions="3*,10,2*">
+                            <Button Grid.Column="0" Classes="primary" HorizontalAlignment="Stretch" Padding="10,9"
                                     Content="{Binding LabelSimpan}" Command="{Binding SimpanCommand}"/>
-                            <Button Grid.Column="2" HorizontalAlignment="Stretch"
+                            <Button Grid.Column="2" HorizontalAlignment="Stretch" Padding="10,9"
                                     Content="{Binding LabelKosongkan}" Command="{Binding KosongkanCommand}"/>
                         </Grid>
                     </StackPanel>
@@ -139,14 +139,14 @@
                                   SelectionMode="Single" GridLinesVisibility="Horizontal"
                                   CanUserSortColumns="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="NRP" Binding="{Binding Nrp}" Width="1.1*"/>
-                                <DataGridTextColumn Header="Nama" Binding="{Binding Nama}" Width="1.6*"/>
-                                <DataGridTextColumn Header="Program studi" Binding="{Binding Prodi}" Width="1.5*"/>
-                                <DataGridTextColumn Header="Jenis kelamin" Binding="{Binding JenisKelamin}" Width="1*"/>
+                                <DataGridTextColumn Header="NRP" Binding="{Binding Nrp}" Width="115"/>
+                                <DataGridTextColumn Header="Nama" Binding="{Binding Nama}" Width="180"/>
+                                <DataGridTextColumn Header="Program studi" Binding="{Binding Prodi}" Width="170"/>
+                                <DataGridTextColumn Header="Jenis kelamin" Binding="{Binding JenisKelamin}" Width="115"/>
                                 <DataGridTextColumn Header="Tanggal lahir" Binding="{Binding TanggalLahirText}"
-                                                    SortMemberPath="TanggalLahir" Width="1.1*"/>
-                                <DataGridTextColumn Header="Alamat" Binding="{Binding Alamat}" Width="1.6*"/>
-                                <DataGridTextColumn Header="Telepon" Binding="{Binding NoTelepon}" Width="1.2*"/>
+                                                    SortMemberPath="TanggalLahir" Width="120"/>
+                                <DataGridTextColumn Header="Alamat" Binding="{Binding Alamat}" Width="*" MinWidth="180"/>
+                                <DataGridTextColumn Header="Telepon" Binding="{Binding NoTelepon}" Width="140"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

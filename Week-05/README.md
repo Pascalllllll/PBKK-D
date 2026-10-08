@@ -59,6 +59,9 @@ Week-05/
 ### `StudentRegistrationMVVM.csproj`
 Sama seperti Week 04 (Avalonia 11, `net8.0`), ditambah paket `MySqlConnector` untuk koneksi ke MySQL.
 
+### `Program.cs`
+Sebelum aplikasi dibuka, culture diatur ke `id-ID`. Tanpa ini `CalendarDatePicker` mengikuti locale sistem, yang di laptop saya `en-US`, sehingga tanggal tampil sebagai `6/19/2006` padahal petunjuknya `dd/mm/yyyy`. Dengan `id-ID`, tanggal tampil dan diketik sebagai `19/06/2006`.
+
 ### `App.axaml.cs`
 Tempat semua bagian dirangkai: membuat `MahasiswaRepository`, memberikannya ke `MainWindowViewModel`, lalu menjadikan ViewModel itu `DataContext` dari `MainWindow`. Setelah itu `MuatCommand` dijalankan sekali untuk mengambil data awal.
 
@@ -111,7 +114,9 @@ Tombol di View tidak memakai event `Click`, tapi `Command` yang di-binding ke Vi
 ### `Views/MainWindow.axaml` dan `MainWindow.axaml.cs`
 Layout dan style sama dengan Week 04: form di kiri, tabel di kanan, baris status di bawah. Bedanya, tidak ada `x:Name` dan tidak ada event handler. Semua kontrol terhubung ke ViewModel lewat `{Binding ...}` dan `Command="{Binding ...}"`. Akibatnya `MainWindow.axaml.cs` hanya berisi `InitializeComponent()`.
 
-Baris status di bawah menampilkan hasil aksi terakhir. Teksnya berubah merah lewat `Classes.error="{Binding IsError}"` kalau MySQL gagal diakses, dan `ProgressBar` muncul selama query berjalan.
+Kolom tabel memakai lebar tetap dalam pixel, kecuali `Alamat` yang mengisi sisa ruang. Kalau jendela terlalu sempit, tabel bisa digeser ke samping, jadi isi kolom tidak terpotong. Tombol Simpan diberi ruang lebih lebar (`3*` banding `2*`) supaya teks "Simpan perubahan" muat.
+
+Baris status di bawah menampilkan hasil aksi terakhir, misalnya "Data 5025241177 diperbarui.". Pesan ini dikirim ke `MuatDataAsync(pesanSukses)` dan baru ditampilkan setelah tabel selesai dimuat ulang, supaya tidak tertimpa pesan "Terhubung ke MySQL." dari proses reload. Teksnya berubah merah lewat `Classes.error="{Binding IsError}"` kalau MySQL gagal diakses, dan `ProgressBar` muncul selama query berjalan.
 
 ### `schema.sql`
 Membuat database `student_db` dan tabel `mahasiswa`. Kolom `id` memakai `AUTO_INCREMENT`, kolom `nrp` diberi constraint `UNIQUE`.

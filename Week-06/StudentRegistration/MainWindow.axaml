@@ -1,0 +1,85 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="StudentRegistration.MainWindow"
+        Title="Student Registration (SQL Server + ADO.NET)"
+        Width="1280" Height="640"
+        MinWidth="1100" MinHeight="480"
+        Background="#F4F5F7"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Styles>
+        <Style Selector="Border.panel">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DDE1E6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#0F766E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="18,9"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#115E59"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="TextBlock.status">
+            <Setter Property="Foreground" Value="#5F6773"/>
+        </Style>
+        <Style Selector="TextBlock.status.error">
+            <Setter Property="Foreground" Value="#B42318"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="28" RowDefinitions="Auto,*,Auto">
+
+        <Grid Grid.Row="0" Margin="0,0,0,20" ColumnDefinitions="*,Auto,Auto">
+            <StackPanel>
+                <TextBlock Text="Student Registration" FontSize="28" FontWeight="Bold" Foreground="#15191E"/>
+                <TextBlock Text="Hosea Felix Sanjaya · 5025241177" Foreground="#5F6773" Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,24,0">
+                <TextBlock Text="Total mahasiswa" Foreground="#5F6773" FontSize="13" HorizontalAlignment="Right"/>
+                <TextBlock x:Name="TotalTextBlock" Text="-" FontSize="26" FontWeight="Bold"
+                           Foreground="#15191E" HorizontalAlignment="Right"/>
+            </StackPanel>
+
+            <Button Grid.Column="2" x:Name="RefreshButton" Classes="primary" Content="Refresh"
+                    VerticalAlignment="Center" Click="RefreshButton_Click"/>
+        </Grid>
+
+        <Border Grid.Row="1" Classes="panel">
+            <Panel>
+                <DataGrid x:Name="StudentDataGrid"
+                          AutoGenerateColumns="False" IsReadOnly="True"
+                          GridLinesVisibility="Horizontal" CanUserSortColumns="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding StudentId, Mode=OneWay}" Width="60"/>
+                        <DataGridTextColumn Header="NIM" Binding="{Binding NIM, Mode=OneWay}" Width="110"/>
+                        <DataGridTextColumn Header="Nama" Binding="{Binding Name, Mode=OneWay}" Width="170"/>
+                        <DataGridTextColumn Header="Program Studi" Binding="{Binding ProgramName, Mode=OneWay}" Width="200"/>
+                        <DataGridTextColumn Header="Tanggal Lahir"
+                                            Binding="{Binding BirthDate, Mode=OneWay, StringFormat='{}{0:dd/MM/yyyy}'}" Width="125"/>
+                        <DataGridTextColumn Header="No. Telepon" Binding="{Binding PhoneNumber, Mode=OneWay}" Width="140"/>
+                        <DataGridTextColumn Header="Alamat" Binding="{Binding Address, Mode=OneWay}" Width="*" MinWidth="200"/>
+                        <DataGridTextColumn Header="Dibuat"
+                                            Binding="{Binding CreatedAt, Mode=OneWay, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}" Width="145"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <TextBlock x:Name="InfoTextBlock" IsVisible="False" MaxWidth="460"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" TextWrapping="Wrap" Foreground="#5F6773"/>
+            </Panel>
+        </Border>
+
+        <TextBlock Grid.Row="2" x:Name="StatusTextBlock" Classes="status"
+                   Margin="0,14,0,0" TextWrapping="Wrap"/>
+    </Grid>
+</Window>

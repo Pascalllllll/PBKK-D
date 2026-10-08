@@ -36,7 +36,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         this.repository = repository;
 
-        MuatCommand = new AsyncRelayCommand(MuatDataAsync);
+        MuatCommand = new AsyncRelayCommand(() => MuatDataAsync());
         SimpanCommand = new AsyncRelayCommand(SimpanAsync);
         KosongkanCommand = new RelayCommand(KosongkanForm);
         HapusCommand = new RelayCommand(() => MenungguKonfirmasiHapus = true, () => SelectedMahasiswa != null);
@@ -161,7 +161,9 @@ public class MainWindowViewModel : ViewModelBase
 
     public string PesanStatus { get => pesanStatus; private set => SetProperty(ref pesanStatus, value); }
 
-    private async Task MuatDataAsync()
+    // Simpan dan hapus mengirim pesan hasilnya ke sini. Pesan baru ditampilkan setelah reload berhasil,
+    // supaya tidak tertimpa "Terhubung ke MySQL." dan tidak menutupi error kalau reload gagal.
+    private async Task MuatDataAsync(string? pesanSukses = null)
     {
         string kunci = KataKunci.Trim();
         IsLoading = true;
@@ -176,7 +178,7 @@ public class MainWindowViewModel : ViewModelBase
 
             kataKunciTerakhir = kunci;
             IsError = false;
-            PesanStatus = "Terhubung ke MySQL.";
+            PesanStatus = pesanSukses ?? "Terhubung ke MySQL.";
         }
         catch (Exception ex)
         {
@@ -197,6 +199,7 @@ public class MainWindowViewModel : ViewModelBase
         if (data == null)
             return;
 
+        string pesan;
         try
         {
             if (await repository.NrpExistsAsync(data.Nrp, diedit?.Id))
@@ -208,15 +211,14 @@ public class MainWindowViewModel : ViewModelBase
             if (diedit == null)
             {
                 await repository.InsertAsync(data);
-                PesanStatus = $"{data.Nama} ({data.Nrp}) ditambahkan.";
+                pesan = $"{data.Nama} ({data.Nrp}) ditambahkan.";
             }
             else
             {
                 data.Id = diedit.Id;
                 await repository.UpdateAsync(data);
-                PesanStatus = $"Data {data.Nrp} diperbarui.";
+                pesan = $"Data {data.Nrp} diperbarui.";
             }
-            IsError = false;
         }
         catch (MySqlException ex) when (ex.ErrorCode == MySqlErrorCode.DuplicateKeyEntry)
         {
@@ -231,7 +233,7 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         KosongkanForm();
-        await MuatDataAsync();
+        await MuatDataAsync(pesan);
     }
 
     private async Task HapusAsync()
@@ -242,8 +244,6 @@ public class MainWindowViewModel : ViewModelBase
         try
         {
             await repository.DeleteAsync(mhs.Id);
-            PesanStatus = $"{mhs.Nama} ({mhs.Nrp}) dihapus.";
-            IsError = false;
         }
         catch (Exception ex)
         {
@@ -253,7 +253,7 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         KosongkanForm();
-        await MuatDataAsync();
+        await MuatDataAsync($"{mhs.Nama} ({mhs.Nrp}) dihapus.");
     }
 
     private Mahasiswa? Validasi()

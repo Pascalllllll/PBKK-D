@@ -35,7 +35,7 @@
 </details>
 
 <details>
-<summary>Week 06</summary>
+<summary>Week 06 - Database SQL Server dan Aplikasi Desktop dengan ADO.NET</summary>
 
 [Week 06](./Week-06/README.md)
 
