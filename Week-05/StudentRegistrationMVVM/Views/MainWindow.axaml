@@ -1,0 +1,191 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StudentRegistrationMVVM.ViewModels"
+        x:Class="StudentRegistrationMVVM.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Registrasi Mahasiswa (MVVM + MySQL)"
+        Width="1240" Height="780"
+        MinWidth="1000" MinHeight="640"
+        Background="#F4F5F7"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Styles>
+        <Style Selector="Border.panel">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DDE1E6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <Style Selector="TextBlock.fieldLabel">
+            <Setter Property="Foreground" Value="#3F4650"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,10,0,4"/>
+        </Style>
+
+        <Style Selector="TextBox, ComboBox, CalendarDatePicker">
+            <Setter Property="MinHeight" Value="38"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="16,9"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#0F766E"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#115E59"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.danger">
+            <Setter Property="Background" Value="#B42318"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.danger:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#912018"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="TextBlock.status">
+            <Setter Property="Foreground" Value="#5F6773"/>
+        </Style>
+        <Style Selector="TextBlock.status.error">
+            <Setter Property="Foreground" Value="#B42318"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="28" RowDefinitions="Auto,*,Auto">
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Registrasi Mahasiswa" FontSize="28" FontWeight="Bold" Foreground="#15191E"/>
+            <TextBlock Text="Hosea Felix Sanjaya · 5025241177" Foreground="#5F6773" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" ColumnDefinitions="360,20,*">
+
+            <Border Grid.Column="0" Classes="panel">
+                <ScrollViewer>
+                    <StackPanel Margin="0,0,8,0">
+                        <TextBlock Text="{Binding JudulForm}" FontSize="19" FontWeight="Bold" Foreground="#15191E"/>
+
+                        <TextBlock Classes="fieldLabel" Text="NRP"/>
+                        <TextBox Text="{Binding Nrp}" Watermark="5025241177" MaxLength="10"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Nama"/>
+                        <TextBox Text="{Binding Nama}" Watermark="Nama lengkap" MaxLength="100"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Program studi"/>
+                        <ComboBox ItemsSource="{Binding DaftarProdi}" SelectedItem="{Binding Prodi}"
+                                  HorizontalAlignment="Stretch" PlaceholderText="Pilih program studi"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Jenis kelamin"/>
+                        <ComboBox ItemsSource="{Binding DaftarJenisKelamin}" SelectedItem="{Binding JenisKelamin}"
+                                  HorizontalAlignment="Stretch" PlaceholderText="Pilih jenis kelamin"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Tanggal lahir"/>
+                        <CalendarDatePicker SelectedDate="{Binding TanggalLahir}" HorizontalAlignment="Stretch"
+                                            Watermark="dd/mm/yyyy"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Alamat"/>
+                        <TextBox Text="{Binding Alamat}" Watermark="Jalan, kota" MaxLength="255"
+                                 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="64"/>
+
+                        <TextBlock Classes="fieldLabel" Text="Nomor telepon"/>
+                        <TextBox Text="{Binding NoTelepon}" Watermark="08xxxxxxxxxx" MaxLength="20"/>
+
+                        <TextBlock Text="{Binding PesanForm}" IsVisible="{Binding AdaPesanForm}"
+                                   Foreground="#B42318" TextWrapping="Wrap" Margin="0,12,0,0"/>
+
+                        <Grid Margin="0,18,0,0" ColumnDefinitions="*,10,*">
+                            <Button Grid.Column="0" Classes="primary" HorizontalAlignment="Stretch"
+                                    Content="{Binding LabelSimpan}" Command="{Binding SimpanCommand}"/>
+                            <Button Grid.Column="2" HorizontalAlignment="Stretch"
+                                    Content="{Binding LabelKosongkan}" Command="{Binding KosongkanCommand}"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <Border Grid.Column="2" Classes="panel">
+                <Grid RowDefinitions="Auto,Auto,*,Auto">
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Daftar mahasiswa" FontSize="19" FontWeight="Bold" Foreground="#15191E"/>
+                        <TextBlock Grid.Column="1" Text="{Binding InfoJumlah}" Foreground="#5F6773"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,14" ColumnDefinitions="*,10,Auto">
+                        <TextBox Grid.Column="0" Text="{Binding KataKunci}"
+                                 Watermark="Cari NRP, nama, atau prodi lalu tekan Enter">
+                            <TextBox.KeyBindings>
+                                <KeyBinding Gesture="Enter" Command="{Binding MuatCommand}"/>
+                            </TextBox.KeyBindings>
+                        </TextBox>
+                        <Button Grid.Column="2" Content="Cari" Command="{Binding MuatCommand}"/>
+                    </Grid>
+
+                    <Panel Grid.Row="2">
+                        <DataGrid ItemsSource="{Binding DaftarMahasiswa}"
+                                  SelectedItem="{Binding SelectedMahasiswa, Mode=TwoWay}"
+                                  AutoGenerateColumns="False" IsReadOnly="True"
+                                  SelectionMode="Single" GridLinesVisibility="Horizontal"
+                                  CanUserSortColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="NRP" Binding="{Binding Nrp}" Width="1.1*"/>
+                                <DataGridTextColumn Header="Nama" Binding="{Binding Nama}" Width="1.6*"/>
+                                <DataGridTextColumn Header="Program studi" Binding="{Binding Prodi}" Width="1.5*"/>
+                                <DataGridTextColumn Header="Jenis kelamin" Binding="{Binding JenisKelamin}" Width="1*"/>
+                                <DataGridTextColumn Header="Tanggal lahir" Binding="{Binding TanggalLahirText}"
+                                                    SortMemberPath="TanggalLahir" Width="1.1*"/>
+                                <DataGridTextColumn Header="Alamat" Binding="{Binding Alamat}" Width="1.6*"/>
+                                <DataGridTextColumn Header="Telepon" Binding="{Binding NoTelepon}" Width="1.2*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel IsVisible="{Binding TampilkanInfoTabel}" VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" MaxWidth="420" Spacing="12">
+                            <TextBlock Text="{Binding InfoTabel}" Foreground="#5F6773"
+                                       TextWrapping="Wrap" TextAlignment="Center"/>
+                            <Button Content="Coba lagi" HorizontalAlignment="Center"
+                                    IsVisible="{Binding TampilkanCobaLagi}" Command="{Binding MuatCommand}"/>
+                        </StackPanel>
+                    </Panel>
+
+                    <Panel Grid.Row="3" Margin="0,14,0,0">
+                        <Button Classes="danger" Content="Hapus" HorizontalAlignment="Left"
+                                Command="{Binding HapusCommand}"
+                                IsVisible="{Binding !MenungguKonfirmasiHapus}"/>
+
+                        <Border IsVisible="{Binding MenungguKonfirmasiHapus}" Background="#FEF3F2"
+                                BorderBrush="#FECDCA" BorderThickness="1" CornerRadius="6" Padding="14,10">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="{Binding PertanyaanHapus}" Foreground="#7A271A"
+                                           TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" Margin="14,0,0,0">
+                                    <Button Content="Batal" IsCancel="True" Command="{Binding BatalHapusCommand}"/>
+                                    <Button Classes="danger" Content="Ya, hapus"
+                                            Command="{Binding KonfirmasiHapusCommand}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Panel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,14,0,0" ColumnDefinitions="Auto,*">
+            <ProgressBar Grid.Column="0" IsIndeterminate="True" IsVisible="{Binding IsLoading}"
+                         Width="80" MinWidth="80" Margin="0,0,12,0" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Classes="status" Classes.error="{Binding IsError}"
+                       Text="{Binding PesanStatus}" TextWrapping="Wrap"/>
+        </Grid>
+    </Grid>
+</Window>

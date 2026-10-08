@@ -28,7 +28,7 @@
 </details>
 
 <details>
-<summary>Week 05</summary>
+<summary>Week 05 - Registrasi Mahasiswa dengan MVVM dan MySQL</summary>
 
 [Week 05](./Week-05/README.md)
 

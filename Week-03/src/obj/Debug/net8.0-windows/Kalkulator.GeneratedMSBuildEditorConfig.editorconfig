@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Kalkulator
-build_property.ProjectDir = D:\Coding\Semester 5\PBKK-D\Week-03\src\
+build_property.ProjectDir = /mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-03/src/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

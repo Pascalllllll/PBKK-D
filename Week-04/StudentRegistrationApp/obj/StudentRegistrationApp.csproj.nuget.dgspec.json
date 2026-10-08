@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coding\\Semester 5\\PBKK-D\\Week-04\\StudentRegistrationApp\\StudentRegistrationApp.csproj": {}
+    "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-04/StudentRegistrationApp/StudentRegistrationApp.csproj": {}
   },
   "projects": {
-    "D:\\Coding\\Semester 5\\PBKK-D\\Week-04\\StudentRegistrationApp\\StudentRegistrationApp.csproj": {
+    "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-04/StudentRegistrationApp/StudentRegistrationApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coding\\Semester 5\\PBKK-D\\Week-04\\StudentRegistrationApp\\StudentRegistrationApp.csproj",
+        "projectUniqueName": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-04/StudentRegistrationApp/StudentRegistrationApp.csproj",
         "projectName": "StudentRegistrationApp",
-        "projectPath": "D:\\Coding\\Semester 5\\PBKK-D\\Week-04\\StudentRegistrationApp\\StudentRegistrationApp.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "D:\\Coding\\Semester 5\\PBKK-D\\Week-04\\StudentRegistrationApp\\obj\\",
+        "projectPath": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-04/StudentRegistrationApp/StudentRegistrationApp.csproj",
+        "packagesPath": "/home/hosee/.nuget/packages/",
+        "outputPath": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-04/StudentRegistrationApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/hosee/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/hosee/.dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
