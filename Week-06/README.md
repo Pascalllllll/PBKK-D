@@ -112,7 +112,11 @@ Menambah tiga mahasiswa contoh dari TI, SI, dan Teknik Elektro, lalu menampilkan
 Menambah satu mahasiswa saat aplikasi sedang terbuka, untuk membuktikan tombol Refresh benar-benar membaca ulang dari database.
 
 ### Catatan: `StudentId` Melompat
-Setelah lima mahasiswa awal (`StudentId` 1 sampai 5), tiga mahasiswa dari `07-mini-assignment.sql` mendapat `StudentId` 8, 9, dan 10, bukan 6, 7, dan 8. Dua `INSERT` yang ditolak di `05-uji-integritas.sql` sudah mengambil nomor 6 dan 7 dari `IDENTITY` sebelum constraint diperiksa, dan nomor yang sudah diambil tidak dikembalikan. Hal yang sama terlihat di uji Refresh. `08-uji-refresh.sql` saya jalankan dua kali: baris pertama (`StudentId` 11) dihapus supaya screenshot aplikasi sebelum Refresh menampilkan 8 mahasiswa, lalu script dijalankan lagi. Baris barunya mendapat `StudentId` 12, karena nomor 11 sudah terpakai walaupun barisnya sudah dihapus. Jadi di screenshot terakhir ada 9 mahasiswa dengan `StudentId` terbesar 12. Ini bukan kesalahan: `IDENTITY` menjamin nomor unik, bukan nomor berurutan tanpa celah. Jumlah mahasiswa tetap dihitung dari jumlah baris (`COUNT(*)`), bukan dari `StudentId` terbesar.
+Setelah lima mahasiswa awal (`StudentId` 1 sampai 5), tiga mahasiswa dari `07-mini-assignment.sql` mendapat `StudentId` 8, 9, dan 10, bukan 6, 7, dan 8. Dua `INSERT` yang ditolak di `05-uji-integritas.sql` sudah mengambil nomor 6 dan 7 dari `IDENTITY` sebelum constraint diperiksa, dan nomor yang sudah diambil tidak dikembalikan.
+
+Hal yang sama terlihat di uji Refresh. `08-uji-refresh.sql` saya jalankan dua kali: baris pertama (`StudentId` 11) dihapus supaya screenshot aplikasi sebelum Refresh menampilkan 8 mahasiswa, lalu script dijalankan lagi. Baris barunya mendapat `StudentId` 12, karena nomor 11 sudah terpakai walaupun barisnya sudah dihapus. Jadi di screenshot terakhir ada 9 mahasiswa dengan `StudentId` terbesar 12.
+
+Ini bukan kesalahan: `IDENTITY` menjamin nomor unik, bukan nomor berurutan tanpa celah. Jumlah mahasiswa tetap dihitung dari jumlah baris (`COUNT(*)`), bukan dari `StudentId` terbesar.
 
 ## 4. Penjelasan Kode: Aplikasi
 
@@ -220,7 +224,7 @@ sudo docker exec student-mssql /opt/mssql-tools18/bin/sqlcmd \
 
 Ganti `01-database.sql` dengan `02-programs.sql`, `03-students.sql`, dan seterusnya sampai `07-mini-assignment.sql`. Opsi `-C` sama fungsinya dengan `TrustServerCertificate=True`.
 
-Script `02` dan `03` membuat tabel, jadi hanya bisa dijalankan sekali. Kalau dijalankan ulang, muncul error "There is already an object named ...".
+Script `02` dan `03` membuat tabel, jadi kalau dijalankan ulang muncul error "There is already an object named ...". Script `07` dan `08` menambah NIM yang sama, jadi kalau dijalankan ulang ditolak oleh `UQ_Students_NIM`. Script `01`, `04`, `05`, dan `06` aman dijalankan berkali-kali.
 
 ### 3. Jalankan Aplikasi
 

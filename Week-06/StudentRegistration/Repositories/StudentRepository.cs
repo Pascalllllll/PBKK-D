@@ -8,8 +8,7 @@ namespace StudentRegistration.Repositories;
 
 public class StudentRepository
 {
-    // Password ini hanya untuk container SQL Server lokal (lihat README). Untuk server lain,
-    // isi environment variable SQLSERVER_CONNECTION_STRING.
+    // Hanya untuk container lokal. Server lain: isi environment variable SQLSERVER_CONNECTION_STRING.
     private const string DefaultConnectionString =
         "Server=localhost,1433;Database=StudentRegistrationDB;User ID=sa;Password=Pbkk_Week06!;" +
         "TrustServerCertificate=True;Connect Timeout=5;";

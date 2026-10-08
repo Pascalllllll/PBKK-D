@@ -161,8 +161,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public string PesanStatus { get => pesanStatus; private set => SetProperty(ref pesanStatus, value); }
 
-    // Simpan dan hapus mengirim pesan hasilnya ke sini. Pesan baru ditampilkan setelah reload berhasil,
-    // supaya tidak tertimpa "Terhubung ke MySQL." dan tidak menutupi error kalau reload gagal.
+    // Pesan sukses simpan/hapus baru ditampilkan setelah reload berhasil, supaya tidak tertimpa.
     private async Task MuatDataAsync(string? pesanSukses = null)
     {
         string kunci = KataKunci.Trim();

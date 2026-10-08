@@ -17,7 +17,7 @@ Fitur:
 * Data mahasiswa: NRP, nama, program studi, jenis kelamin, tanggal lahir, alamat, dan nomor telepon.
 * Pencarian berdasarkan NRP, nama, atau prodi (query `LIKE` ke MySQL).
 * Validasi input sebelum disimpan, termasuk cek NRP dobel ke database.
-* Pesan yang jelas saat data sedang dimuat, saat tabel kosong, dan saat MySQL tidak bisa diakses.
+* Tabel menampilkan pesan saat data sedang dimuat, saat masih kosong, dan saat MySQL tidak bisa diakses.
 
 ## 2. Struktur Project
 

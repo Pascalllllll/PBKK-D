@@ -1,7 +1,6 @@
 namespace StudentRegistration.Models;
 
-// Satu baris tabel Programs. Tidak diberi nama "Program" supaya tidak tertukar
-// dengan class Program di Program.cs yang menjadi entry point aplikasi.
+// Bukan "Program" supaya tidak tertukar dengan class entry point di Program.cs.
 public class StudyProgram
 {
     public int ProgramId { get; set; }
