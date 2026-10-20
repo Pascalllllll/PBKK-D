@@ -1,4 +1,4 @@
-# Week 07 & 08 - ETS: ETC (Elite TC Champions)
+# Week ETS - ETC (Elite TC Champions)
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  
