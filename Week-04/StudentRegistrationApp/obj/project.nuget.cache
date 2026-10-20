@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CWn79X8+h7U=",
+  "dgSpecHash": "VFTu/0cd2c8=",
   "success": true,
   "projectFilePath": "/mnt/5866DC3066DC111C/Coding/Semester 5/PBKK-D/Week-04/StudentRegistrationApp/StudentRegistrationApp.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,10 @@
     "/home/hosee/.nuget/packages/skiasharp.nativeassets.webassembly/2.88.9/skiasharp.nativeassets.webassembly.2.88.9.nupkg.sha512",
     "/home/hosee/.nuget/packages/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
     "/home/hosee/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
-    "/home/hosee/.nuget/packages/tmds.dbus.protocol/0.20.0/tmds.dbus.protocol.0.20.0.nupkg.sha512"
+    "/home/hosee/.nuget/packages/tmds.dbus.protocol/0.20.0/tmds.dbus.protocol.0.20.0.nupkg.sha512",
+    "/home/hosee/.nuget/packages/microsoft.netcore.app.ref/8.0.32/microsoft.netcore.app.ref.8.0.32.nupkg.sha512",
+    "/home/hosee/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.32/microsoft.aspnetcore.app.ref.8.0.32.nupkg.sha512",
+    "/home/hosee/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.32/microsoft.netcore.app.host.linux-x64.8.0.32.nupkg.sha512"
   ],
   "logs": []
 }

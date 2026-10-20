@@ -42,16 +42,9 @@
 </details>
 
 <details>
-<summary>Week 07</summary>
+<summary>Week 07 & 08 - ETS: ETC (Elite TC Champions)</summary>
 
-[Week 07](./Week-07/README.md)
-
-</details>
-
-<details>
-<summary>Week 08</summary>
-
-[Week 08](./Week-08/README.md)
+[Week 07 & 08](./Week-07-08/README.md)
 
 </details>
 
