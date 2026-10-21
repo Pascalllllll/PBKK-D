@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Poster ETC</title>
+<title>Infografis ETC</title>
 <style>
   /* Font yang sama dengan aplikasi (Assets/Fonts/DMSans.ttf), disimpan lokal supaya poster tetap benar tanpa internet. */
   @font-face {
@@ -13,422 +13,578 @@
     font-display: block;
   }
 
-  /* Warna dan radius diambil dari Styles/Tokens.axaml aplikasi ETC. */
+  /* Semua warna berasal dari Styles/Tokens.axaml aplikasi ETC: navy dan kuning sebagai identitas,
+     sisanya warna status yang memang dipakai aplikasi (biru profil, hijau diterima, merah ditolak). */
   :root {
     --navy: #0B1F3A;
+    --navy-2: #17385E;
     --yellow: #F8C832;
     --yellow-soft: #FFF6D6;
     --yellow-ink: #705600;
-    --ground: #F1F4F8;
+    --blue: #1D4ED8;
+    --blue-soft: #E3EBFD;
+    --green: #15803D;
+    --green-ink: #14532D;
+    --green-soft: #DCFCE7;
+    --red: #B91C1C;
+    --red-ink: #831C1E;
+    --red-soft: #FFEDEA;
+    --ground: #EAEFF6;
     --surface: #FFFFFF;
+    --raised: #F3F4F6;
     --text: #182230;
     --muted: #596273;
-    --border: #E5E7EB;
-    --line: #C9D0DA;
-    --success-ink: #14532D;
-    --success-soft: #DCFCE7;
-    --danger-ink: #831C1E;
-    --danger-soft: #FFEDEA;
-    --neutral-ink: #374151;
-    --neutral-soft: #F3F4F6;
-    --r-panel: 8px;
-    --r-status: 4px;
+    --border: #DCE2EA;
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: #D9DEE6;
+    background: #CBD3DE;
     color: var(--text);
     font-family: "DM Sans", system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.45;
   }
   img { display: block; max-width: 100%; height: auto; }
   a { color: inherit; }
   a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; border-radius: 2px; }
-  code { font-size: .92em; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  .ico { width: 1em; height: 1em; fill: currentColor; flex: none; }
 
   .poster {
-    width: 1600px;
-    margin: 32px auto;
+    width: 1200px;
+    margin: 28px auto;
     background: var(--ground);
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 2px 24px rgba(11, 31, 58, .18); /* satu-satunya bayangan: memisahkan kertas poster dari latar */
+    padding: 0 22px 22px;
   }
 
-  /* ---------- Kepala poster ---------- */
-  .mast {
+  /* ---------- Bagian atas ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 610px;
+    gap: 22px;
+    padding-top: 26px;
+    margin-bottom: 18px;
+  }
+  .pill {
+    display: inline-block;
     background: var(--navy);
     color: #fff;
-    padding: 48px 64px 46px;
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 48px;
-    position: relative;
-    overflow: hidden;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 6px 20px;
+    border-radius: 999px;
   }
-  /* Serpihan kuning pada logo dipakai ulang sebagai motif penanda. */
-  .mast::after {
+  .hero h1 {
+    margin: 6px 0 0;
+    font-size: 118px;
+    line-height: .95;
+    font-weight: 900;
+    letter-spacing: -4px;
+    color: var(--navy);
+  }
+  .hero h1 span { color: var(--yellow); }
+  .hero .sub { font-size: 25px; font-weight: 700; color: var(--navy); margin-top: 8px; line-height: 1.2; }
+  .hero .for {
+    display: inline-block;
+    margin-top: 12px;
+    background: var(--yellow-soft);
+    color: var(--yellow-ink);
+    border: 1px solid #F0D98A;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 5px 16px;
+    border-radius: 999px;
+  }
+  .hero .lede { font-size: 16.5px; margin-top: 14px; color: var(--text); max-width: 50ch; }
+  .hero .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
+  .hero .meta b { color: var(--navy); }
+
+  .stage {
+    position: relative;
+    background: var(--navy);
+    border-radius: 18px;
+    padding: 22px 22px 0;
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  /* Serpihan kuning dari logo ETC, dipakai sebagai motif di seluruh poster. */
+  .stage::before {
     content: "";
     position: absolute;
-    right: 400px; top: -30px;
-    width: 220px; height: 420px;
+    left: 40px; top: -40px;
+    width: 160px; height: 520px;
     background: var(--yellow);
-    clip-path: polygon(70% 0, 88% 0, 22% 100%, 12% 100%);
+    clip-path: polygon(78% 0, 100% 0, 18% 100%, 6% 100%);
   }
-  .brand { display: flex; align-items: center; gap: 16px; }
-  .brand .logo { width: 72px; height: 72px; background: #fff; border-radius: var(--r-panel); padding: 8px; }
-  .brand b { font-size: 30px; letter-spacing: .5px; }
-  .brand span { display: block; font-size: 16px; color: #C9D2DE; }
-  .mast h1 {
-    font-size: 84px;
-    line-height: 1;
-    margin: 30px 0 20px;
-    font-weight: 700;
-    letter-spacing: -2px;
+  .stage .badge {
+    position: relative;
+    display: flex; align-items: center; gap: 12px;
+    color: #fff; margin: 0 0 14px auto; width: max-content;
   }
-  .mast h1 em { font-style: normal; color: var(--yellow); }
-  .mast .lede { font-size: 22px; max-width: 44ch; color: #E3E8EF; margin: 0; }
-  .who {
-    align-self: end;
-    position: relative; z-index: 1;
-    border: 1px solid #3A4E6B;
-    border-radius: var(--r-panel);
-    padding: 18px 20px;
-    font-size: 16px;
-    margin: 0;
-  }
-  .who dt { color: #AEB9C8; font-size: 13px; }
-  .who dd { margin: 0 0 10px; font-weight: 500; }
-  .who dd:last-child { margin-bottom: 0; }
+  .stage .badge img { width: 54px; height: 54px; background: #fff; border-radius: 12px; padding: 6px; }
+  .stage .badge b { font-size: 20px; display: block; line-height: 1.1; }
+  .stage .badge span { font-size: 13px; color: #C9D2DE; }
+  .stage .win { position: relative; }
 
-  /* ---------- Penanda soal ---------- */
-  .q {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 14px; font-weight: 700; color: var(--navy);
-    margin-bottom: 6px;
+  /* ---------- Bingkai jendela untuk tangkapan layar ---------- */
+  .win { background: var(--surface); border-radius: 10px 10px 0 0; overflow: hidden; border: 1px solid #B9C3D1; }
+  .card .win { border-radius: 10px; }
+  .win .bar {
+    display: flex; align-items: center; gap: 8px;
+    height: 28px; padding: 0 12px;
+    background: var(--raised);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px; color: var(--muted);
   }
-  .q::before {
-    content: "";
-    width: 12px; height: 22px;
-    background: var(--yellow);
-    clip-path: polygon(55% 0, 100% 0, 45% 100%, 0 100%);
+  .win .bar img { width: 16px; height: 16px; }
+  .win .bar b { color: var(--navy); }
+  .win .bar .ctl { margin-left: auto; display: flex; gap: 10px; }
+  .win .bar .ctl i { width: 9px; height: 9px; border: 1.5px solid #8A94A3; display: block; }
+  .win .bar .ctl i:first-child { border-width: 0 0 1.5px; height: 6px; }
+
+  /* ---------- Kartu bernomor ---------- */
+  .row { display: grid; gap: 16px; margin-bottom: 16px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px 18px;
+    min-width: 0;
   }
-  h2 { font-size: 34px; line-height: 1.12; margin: 0 0 14px; letter-spacing: -.6px; color: var(--navy); }
-  h3 { font-size: 18px; margin: 0 0 8px; color: var(--navy); line-height: 1.3; }
-  p { margin: 0 0 12px; }
-
-  /* ---------- Isi: dua blok soal berdampingan ---------- */
-  .body {
-    display: grid;
-    grid-template-columns: 560px 1fr;
-    gap: 0;
-    flex: 1;
+  .card h2 {
+    display: flex; align-items: center; gap: 12px;
+    margin: 0 0 12px;
+    font-size: 21px; line-height: 1.15;
+    color: var(--navy);
+    letter-spacing: -.3px;
   }
-  .col { padding: 44px 48px 40px 64px; }
-  .col + .col { padding: 44px 64px 40px 48px; border-left: 1px solid #D5DBE4; }
-
-  /* Soal 2 */
-  .intro p { color: var(--muted); font-size: 16px; }
-  .quote {
-    border-top: 3px solid var(--navy);
-    padding-top: 12px;
-    color: var(--text) !important;
-    font-size: 19px !important;
-    font-weight: 500;
-    margin: 18px 0 24px;
-  }
-  .map { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-panel); overflow: hidden; }
-  .map th { text-align: left; font-size: 13px; font-weight: 700; color: var(--muted); padding: 11px 16px; border-bottom: 1px solid var(--border); background: var(--neutral-soft); }
-  .map td { padding: 11px 16px; vertical-align: top; border-bottom: 1px solid var(--border); font-size: 15px; }
-  .map tr:last-child td { border-bottom: 0; }
-  .map td:first-child { width: 44%; }
-  .map td:last-child { color: var(--neutral-ink); }
-  .map td:last-child b { color: var(--navy); }
-
-  /* Manfaat berada di kolom kanan agar tinggi kedua kolom seimbang; labelnya tetap menunjuk Soal 2. */
-  .gains-label { margin-top: 26px; }
-  .gains { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 3px solid var(--navy); }
-  .gains > div { padding: 12px 20px 0 0; }
-  .gains > div + div { padding-left: 20px; border-left: 1px solid var(--line); }
-  .gains h3 { font-size: 16px; margin-bottom: 4px; }
-  .gains p { font-size: 15px; color: var(--neutral-ink); margin: 0; }
-
-  /* Soal 1 */
-  .scope-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 22px; }
-  .scope-head p { color: var(--muted); margin: 0; font-size: 16px; }
-
-  .lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .lane { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-panel); padding: 20px 22px; }
-  .lane .tag { font-size: 13px; color: var(--muted); }
-  .steps { list-style: none; margin: 10px 0 14px; padding: 0; counter-reset: s; }
-  .steps li {
-    counter-increment: s;
-    display: grid; grid-template-columns: 26px 1fr; gap: 8px;
-    padding: 7px 0;
-    border-top: 1px dashed var(--border);
-    font-size: 15px;
-  }
-  .steps li::before {
-    content: counter(s);
-    width: 22px; height: 22px;
+  .card h2 .n {
+    flex: none;
+    width: 36px; height: 36px;
     display: grid; place-items: center;
-    font-size: 12px; font-weight: 700;
+    border-radius: 50%;
     background: var(--navy); color: #fff;
-    border-radius: var(--r-status);
+    font-size: 18px; font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  /* 1. Latar belakang */
+  .lead { font-size: 14.5px; color: var(--text); }
+  .lead + .lead { margin-top: 8px; }
+  .solve {
+    margin-top: 12px;
+    background: var(--yellow-soft);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start;
+  }
+  .solve .mark { width: 34px; height: 34px; border-radius: 8px; background: var(--yellow); display: grid; place-items: center; color: var(--navy); font-size: 20px; }
+  .solve b { display: block; color: var(--yellow-ink); font-size: 16px; }
+  .solve p { font-size: 14px; }
+
+  /* 2. Manfaat */
+  .check li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 6px 0; font-size: 14px; }
+  .check li + li { border-top: 1px dashed var(--border); }
+  .check li::before {
+    content: "";
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
     margin-top: 1px;
   }
-  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13.5px; }
-  .flow .lbl { color: var(--muted); margin-right: 4px; }
-  .flow .arr { color: var(--muted); }
-  .st { padding: 2px 8px; border-radius: var(--r-status); font-weight: 500; white-space: nowrap; }
-  .st.neutral { background: var(--neutral-soft); color: var(--neutral-ink); border: 1px solid #D1D5DB; }
-  .st.open { background: var(--yellow-soft); color: var(--yellow-ink); border: 1px solid #F0D98A; }
-  .st.ok { background: var(--success-soft); color: var(--success-ink); }
-  .st.no { background: var(--danger-soft); color: var(--danger-ink); }
+  .check b { color: var(--navy); }
 
-  .modules { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-panel); }
-  .modules > div { padding: 16px 20px; border-bottom: 1px solid var(--border); }
-  .modules > div:not(:nth-child(3n)) { border-right: 1px solid var(--border); }
-  .modules > div:nth-last-child(-n+3) { border-bottom: 0; }
-  .modules p { font-size: 14.5px; color: var(--neutral-ink); margin: 0; }
-  .modules h3 { font-size: 16px; margin-bottom: 4px; }
-
-  .rules { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; margin-top: 22px; }
-  .rules ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--neutral-ink); }
-  .rules li { margin-bottom: 5px; }
-  .rules .out { border: 1px dashed #AAB3C0; border-radius: var(--r-panel); padding: 16px 20px; }
-
-  /* ---------- Tangkapan layar ---------- */
-  .shots-band { padding: 36px 64px 44px; border-top: 1px solid #D5DBE4; }
-  .shots-head { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
-  .shots-head h2 { margin: 0; }
-  .shots-head p { margin: 0; color: var(--muted); }
-  .shots { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 20px; align-items: start; }
-  figure { margin: 0; }
-  .frame { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); overflow: hidden; }
-  .frame .bar { height: 28px; background: var(--navy); color: #C9D2DE; font-size: 13px; display: flex; align-items: center; padding: 0 12px; }
-  figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
-
-  /* ---------- Kaki poster ---------- */
-  .foot {
-    background: var(--navy); color: #E3E8EF;
-    padding: 28px 64px;
-    display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px;
-    font-size: 15px;
+  /* 3. Teknologi */
+  .tech { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 8px; }
+  .tech li { text-align: center; font-size: 12px; color: var(--muted); line-height: 1.25; }
+  .tech .t {
+    width: 54px; height: 54px; margin: 0 auto 6px;
+    border-radius: 12px;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 16px; letter-spacing: -.3px;
   }
-  .foot h3 { color: #fff; font-size: 15px; margin-bottom: 8px; }
-  .stack-list { display: flex; flex-wrap: wrap; gap: 6px; }
-  .stack-list span { border: 1px solid #3A4E6B; border-radius: var(--r-status); padding: 3px 9px; }
-  .foot a { color: var(--yellow); text-underline-offset: 3px; }
-  .foot p { margin: 0 0 4px; }
-  .note { color: #AEB9C8; font-size: 13px; margin-top: 10px !important; }
+  .tech b { display: block; color: var(--text); font-size: 13px; }
+  .t.navy { background: var(--navy); color: #fff; }
+  .t.yellow { background: var(--yellow); color: var(--navy); }
+  .t.blue { background: var(--blue-soft); color: var(--blue); }
+  .t.green { background: var(--green-soft); color: var(--green-ink); }
+  .t.red { background: var(--red-soft); color: var(--red-ink); }
+  .t.grey { background: var(--raised); color: var(--navy); border: 1px solid var(--border); }
 
-  /* ---------- Layar lebih sempit dari poster: kolom mengalir ---------- */
-  @media screen and (max-width: 1660px) {
-    .poster { width: auto; margin: 0; box-shadow: none; }
+  /* 4. Fitur utama */
+  .feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .feat li { border-radius: 10px; padding: 12px; text-align: center; font-size: 12.5px; color: var(--text); }
+  .feat .fi { width: 40px; height: 40px; margin: 0 auto 6px; display: grid; place-items: center; border-radius: 10px; background: #fff; font-size: 24px; }
+  .feat b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .feat .c1 { background: var(--yellow-soft); } .feat .c1 .fi, .feat .c1 b { color: var(--yellow-ink); }
+  .feat .c2 { background: var(--blue-soft); }   .feat .c2 .fi, .feat .c2 b { color: var(--blue); }
+  .feat .c3 { background: var(--green-soft); }  .feat .c3 .fi, .feat .c3 b { color: var(--green-ink); }
+  .feat .c4 { background: var(--red-soft); }   .feat .c4 .fi, .feat .c4 b { color: var(--red-ink); }
+  .feat .c5 { background: #E8EBF0; }            .feat .c5 .fi, .feat .c5 b { color: var(--navy); }
+  .feat .c6 { background: var(--yellow-soft); } .feat .c6 .fi, .feat .c6 b { color: var(--yellow-ink); }
+
+  /* 5. Menu navigasi: tiruan sidebar ETC dengan label dan ikon aslinya */
+  .nav-mock { background: var(--ground); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+  .nav-mock .brand { display: flex; align-items: center; gap: 8px; padding: 2px 6px 8px; }
+  .nav-mock .brand img { width: 28px; height: 28px; background: #fff; border-radius: 6px; padding: 3px; }
+  .nav-mock .brand b { color: var(--navy); font-size: 16px; }
+  .nav-mock .brand span { margin-left: auto; font-size: 11px; color: var(--muted); }
+  .nav-mock ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .nav-mock li { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; font-size: 13.5px; }
+  .nav-mock li .ico { font-size: 18px; }
+  .nav-mock li.on { background: var(--yellow-soft); color: var(--yellow-ink); }
+  .nav-mock li.prof { color: var(--blue); }
+  .nav-mock li.out { color: var(--red); }
+  .nav-mock hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; grid-column: 1 / -1; }
+  .note { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+
+  .shot-cap { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  /* 9. Alur */
+  .flow { display: flex; align-items: flex-start; justify-content: space-between; gap: 4px; }
+  .flow li { flex: 1; text-align: center; font-size: 12.5px; font-weight: 600; color: var(--text); position: relative; line-height: 1.25; }
+  .flow li + li::before {
+    content: "";
+    position: absolute; left: -10px; top: 22px;
+    width: 10px; height: 10px;
+    border-top: 2.5px solid #8A94A3; border-right: 2.5px solid #8A94A3;
+    transform: rotate(45deg);
   }
-  @media screen and (max-width: 1280px) {
-    .body { grid-template-columns: 1fr; }
-    .col + .col { border-left: 0; border-top: 1px solid #D5DBE4; padding-left: 64px; }
-    .col { padding-right: 64px; }
-    .mast::after { right: 340px; }
+  .flow .c { width: 52px; height: 52px; margin: 0 auto 6px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 26px; }
+  .flow .c.k1 { background: var(--blue); }
+  .flow .c.k2 { background: var(--navy); }
+  .flow .c.k3 { background: var(--yellow); color: var(--navy); }
+  .flow .c.k4 { background: var(--red); }
+  .flow .c.k5 { background: var(--green); }
+  .flow .c.k6 { background: var(--navy-2); }
+  .states { display: grid; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); font-size: 12.5px; }
+  .states div { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+  .states .l { width: 120px; color: var(--muted); }
+  .st { padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+  .st.n { background: var(--raised); color: #374151; border: 1px solid #D1D5DB; }
+  .st.o { background: var(--yellow-soft); color: var(--yellow-ink); border: 1px solid #F0D98A; }
+  .st.g { background: var(--green-soft); color: var(--green-ink); }
+  .st.r { background: var(--red-soft); color: var(--red-ink); }
+  .states i { font-style: normal; color: var(--muted); }
+
+  /* 10. Struktur folder */
+  .tree { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; font-size: 13px; }
+  .tree li { display: flex; align-items: center; gap: 7px; padding: 2px 0; white-space: nowrap; }
+  .tree li.sub { padding-left: 20px; }
+  .tree .d { width: 14px; height: 11px; border-radius: 2px; flex: none; background: var(--yellow); }
+  .tree .f { width: 11px; height: 13px; flex: none; background: #fff; border: 1.5px solid var(--blue); border-radius: 2px; }
+  .tree em { font-style: normal; color: var(--muted); font-size: 12px; margin-left: 2px; }
+
+  /* 11 dan 12. Daftar bernomor kecil */
+  .nlist { counter-reset: k; }
+  .nlist li { counter-increment: k; display: grid; grid-template-columns: 22px 1fr; gap: 9px; padding: 5px 0; font-size: 13.5px; }
+  .nlist li::before {
+    content: counter(k);
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--blue); color: #fff;
+    font-size: 12px; font-weight: 700;
   }
-  @media screen and (max-width: 860px) {
-    .mast, .col, .col + .col, .shots-band, .foot { padding-left: 16px; padding-right: 16px; }
-    .mast { grid-template-columns: 1fr; padding-top: 28px; gap: 24px; }
-    .mast h1 { font-size: 44px; letter-spacing: -1px; margin-top: 22px; }
-    .mast .lede { font-size: 17px; }
-    .mast::after { display: none; }
-    .who { align-self: start; }
-    .scope-head, .lanes, .rules, .shots, .foot { grid-template-columns: 1fr; gap: 20px; }
-    .gains { grid-template-columns: 1fr; }
-    .gains > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 12px; }
-    .modules { grid-template-columns: 1fr; }
-    .modules > div { border-right: 0 !important; border-bottom: 1px solid var(--border) !important; }
-    .modules > div:last-child { border-bottom: 0 !important; }
-    .map td, .map th { padding: 10px 12px; font-size: 14.5px; }
-    h2 { font-size: 26px; }
+  .nlist.navy li::before { background: var(--navy); }
+  .nlist .arrow { color: var(--muted); }
+
+  /* 13. Hasil */
+  .goal li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 5px 0; font-size: 13.5px; }
+  .goal li::before {
+    content: "";
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
+  }
+  .out-scope { margin-top: 10px; padding: 10px 12px; border: 1px dashed #AAB3C0; border-radius: 10px; font-size: 12.5px; color: var(--muted); }
+  .out-scope b { color: var(--text); }
+
+  .sign {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .sign::before {
+    content: ""; position: absolute; right: -6px; top: -20px;
+    width: 90px; height: 190px; background: var(--yellow);
+    clip-path: polygon(78% 0, 100% 0, 18% 100%, 6% 100%);
+  }
+  .sign img { position: relative; width: 70px; height: 70px; background: #fff; border-radius: 14px; padding: 8px; }
+  .sign b { position: relative; display: block; font-size: 30px; line-height: 1; margin-top: 14px; }
+  .sign span { position: relative; display: block; color: #C9D2DE; font-size: 13px; margin-top: 4px; }
+  .sign .links { position: relative; margin-top: 14px; font-size: 13px; display: grid; gap: 3px; }
+  .sign .links a { color: var(--yellow); text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .sign .who { position: relative; font-size: 12.5px; color: #C9D2DE; margin-top: 12px; border-top: 1px solid #3A4E6B; padding-top: 10px; }
+
+  /* Susunan kolom tiap baris */
+  .r1 { grid-template-columns: 1.1fr 1fr 1fr; }
+  .r2 { grid-template-columns: 1.15fr 1fr; }
+  .r3 { grid-template-columns: 1fr 1fr 1fr; }
+  .r4 { grid-template-columns: 1.15fr 1fr; }
+  .r5 { grid-template-columns: 1fr 1fr 1.1fr 230px; }
+
+  /* ---------- Layar sempit: poster mengalir menjadi satu kolom ---------- */
+  @media screen and (max-width: 1250px) {
+    .poster { width: auto; margin: 0; }
+  }
+  @media screen and (max-width: 1000px) {
+    .hero, .r1, .r2, .r3, .r4 { grid-template-columns: 1fr; }
+    .r5 { grid-template-columns: 1fr 1fr; }
+  }
+  @media screen and (max-width: 640px) {
+    .poster { padding: 0 16px 16px; }
+    .hero h1 { font-size: 76px; letter-spacing: -2px; }
+    .hero .sub { font-size: 20px; }
+    .pill { font-size: 16px; }
+    .r5 { grid-template-columns: 1fr; }
+    .feat { grid-template-columns: 1fr 1fr; }
+    .tech { grid-template-columns: repeat(3, 1fr); }
+    .nav-mock ul, .tree { grid-template-columns: 1fr; }
+    .flow { flex-wrap: wrap; justify-content: center; row-gap: 14px; }
+    .flow li { flex: 0 0 30%; }
+    .flow li + li::before { display: none; }
+    .states .l { width: 100%; }
+    .card h2 { font-size: 19px; }
+    .tree li { white-space: normal; }
   }
 
-  /* ---------- Cetak: satu lembar A3 tegak ---------- */
-  @page { size: A3 portrait; margin: 0; }
+  /* ---------- Cetak: satu halaman seukuran poster ---------- */
+  @page { size: 1200px 2280px; margin: 0; }
   @media print {
-    body { background: #fff; }
-    .poster { width: 1600px; min-height: 0; margin: 0 auto; box-shadow: none; zoom: .64; }
-    .body { grid-template-columns: 560px 1fr; }
-    .col + .col { border-left: 1px solid #D5DBE4; border-top: 0; }
+    body { background: var(--ground); }
+    .poster { margin: 0; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Ikon Fluent yang sama dengan menu aplikasi (src/Etc.Desktop/Assets/Icons, lisensi MIT Microsoft). -->
+  <symbol id="i-home" viewBox="0 0 20 20"><path d="M8.9975 2.38811C9.56767 1.87584 10.4323 1.87584 11.0025 2.38811L16.5025 7.32965C16.8191 7.61414 17 8.01977 17 8.44544V15.4996C17 16.328 16.3284 16.9996 15.5 16.9996H13C12.1716 16.9996 11.5 16.328 11.5 15.4996V11.9996C11.5 11.7234 11.2761 11.4996 11 11.4996H9C8.72386 11.4996 8.5 11.7234 8.5 11.9996V15.4996C8.5 16.328 7.82843 16.9996 7 16.9996H4.5C3.67157 16.9996 3 16.328 3 15.4996V8.44544C3 8.01977 3.18086 7.61414 3.4975 7.32965L8.9975 2.38811ZM10.3342 3.13197C10.1441 2.96122 9.85589 2.96122 9.66583 3.13197L4.16583 8.07351C4.06029 8.16834 4 8.30355 4 8.44544V15.4996C4 15.7757 4.22386 15.9996 4.5 15.9996H7C7.27614 15.9996 7.5 15.7757 7.5 15.4996V11.9996C7.5 11.1711 8.17157 10.4996 9 10.4996H11C11.8284 10.4996 12.5 11.1711 12.5 11.9996V15.4996C12.5 15.7757 12.7239 15.9996 13 15.9996H15.5C15.7761 15.9996 16 15.7757 16 15.4996V8.44544C16 8.30355 15.9397 8.16834 15.8342 8.07351L10.3342 3.13197Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 20 20"><path d="M13.7291 14.4362C12.5924 15.411 11.115 16 9.5 16C5.91015 16 3 13.0899 3 9.5C3 5.91015 5.91015 3 9.5 3C13.0899 3 16 5.91015 16 9.5C16 11.115 15.411 12.5924 14.4361 13.7292L17.8535 17.1465C18.0487 17.3417 18.0487 17.6583 17.8535 17.8536C17.6799 18.0271 17.4105 18.0464 17.2156 17.9114L17.1464 17.8536L13.7291 14.4362ZM13.0196 13.7266C13.276 13.5128 13.5127 13.2761 13.7265 13.0197C14.5216 12.0659 15 10.8388 15 9.5C15 6.46243 12.5376 4 9.5 4C6.46243 4 4 6.46243 4 9.5C4 12.5376 6.46243 15 9.5 15C10.8388 15 12.0658 14.5217 13.0196 13.7266Z"/></symbol>
+  <symbol id="i-team" viewBox="0 0 20 20"><path d="M10 3C9.17157 3 8.5 3.67157 8.5 4.5C8.5 5.32843 9.17157 6 10 6C10.8284 6 11.5 5.32843 11.5 4.5C11.5 3.67157 10.8284 3 10 3ZM7.5 4.5C7.5 3.11929 8.61929 2 10 2C11.3807 2 12.5 3.11929 12.5 4.5C12.5 5.88071 11.3807 7 10 7C8.61929 7 7.5 5.88071 7.5 4.5ZM15.5 4C14.9477 4 14.5 4.44772 14.5 5C14.5 5.55228 14.9477 6 15.5 6C16.0523 6 16.5 5.55228 16.5 5C16.5 4.44772 16.0523 4 15.5 4ZM13.5 5C13.5 3.89543 14.3954 3 15.5 3C16.6046 3 17.5 3.89543 17.5 5C17.5 6.10457 16.6046 7 15.5 7C14.3954 7 13.5 6.10457 13.5 5ZM3.5 5C3.5 4.44772 3.94772 4 4.5 4C5.05228 4 5.5 4.44772 5.5 5C5.5 5.55228 5.05228 6 4.5 6C3.94772 6 3.5 5.55228 3.5 5ZM4.5 3C3.39543 3 2.5 3.89543 2.5 5C2.5 6.10457 3.39543 7 4.5 7C5.60457 7 6.5 6.10457 6.5 5C6.5 3.89543 5.60457 3 4.5 3ZM5.09952 14.9976C5.06655 14.9992 5.03337 15 5 15C3.89543 15 3 14.1046 3 13V9.25C3 9.11193 3.11193 9 3.25 9H5.01373C5.05433 8.63279 5.18329 8.29221 5.37889 8H3.25C2.55964 8 2 8.55964 2 9.25V13C2 14.6569 3.34315 16 5 16C5.13712 16 5.27209 15.9908 5.40434 15.973C5.27099 15.6628 5.16813 15.3364 5.09952 14.9976ZM14.5957 15.973C14.7279 15.9908 14.8629 16 15 16C16.6569 16 18 14.6569 18 13V9.25C18 8.55964 17.4404 8 16.75 8H14.6211C14.8167 8.29221 14.9457 8.63279 14.9863 9H16.75C16.8881 9 17 9.11193 17 9.25V13C17 14.1046 16.1046 15 15 15C14.9666 15 14.9334 14.9992 14.9005 14.9976C14.8319 15.3364 14.729 15.6628 14.5957 15.973ZM7.25 8C6.55964 8 6 8.55964 6 9.25V14C6 16.2091 7.79086 18 10 18C12.2091 18 14 16.2091 14 14V9.25C14 8.55964 13.4404 8 12.75 8H7.25ZM7 9.25C7 9.11193 7.11193 9 7.25 9H12.75C12.8881 9 13 9.11193 13 9.25V14C13 15.6569 11.6569 17 10 17C8.34315 17 7 15.6569 7 14V9.25Z"/></symbol>
+  <symbol id="i-document" viewBox="0 0 20 20"><path d="M6 10.5C6 10.2239 6.22386 10 6.5 10C6.77614 10 7 10.2239 7 10.5C7 10.7761 6.77614 11 6.5 11C6.22386 11 6 10.7761 6 10.5ZM6.5 12C6.22386 12 6 12.2239 6 12.5C6 12.7761 6.22386 13 6.5 13C6.77614 13 7 12.7761 7 12.5C7 12.2239 6.77614 12 6.5 12ZM6 14.5C6 14.2239 6.22386 14 6.5 14C6.77614 14 7 14.2239 7 14.5C7 14.7761 6.77614 15 6.5 15C6.22386 15 6 14.7761 6 14.5ZM8.5 10C8.22386 10 8 10.2239 8 10.5C8 10.7761 8.22386 11 8.5 11H13.5C13.7761 11 14 10.7761 14 10.5C14 10.2239 13.7761 10 13.5 10H8.5ZM8 12.5C8 12.2239 8.22386 12 8.5 12H13.5C13.7761 12 14 12.2239 14 12.5C14 12.7761 13.7761 13 13.5 13H8.5C8.22386 13 8 12.7761 8 12.5ZM8.5 14C8.22386 14 8 14.2239 8 14.5C8 14.7761 8.22386 15 8.5 15H13.5C13.7761 15 14 14.7761 14 14.5C14 14.2239 13.7761 14 13.5 14H8.5ZM6 2C4.89543 2 4 2.89543 4 4V16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V7.41421C16 7.01639 15.842 6.63486 15.5607 6.35355L11.6464 2.43934C11.3651 2.15804 10.9836 2 10.5858 2H6ZM5 4C5 3.44772 5.44772 3 6 3H10V6.5C10 7.32843 10.6716 8 11.5 8H15V16C15 16.5523 14.5523 17 14 17H6C5.44772 17 5 16.5523 5 16V4ZM14.7929 7H11.5C11.2239 7 11 6.77614 11 6.5V3.20711L14.7929 7Z"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 20 20"><path d="M4 4.5C4 3.11929 5.11929 2 6.5 2H13.5C14.8807 2 16 3.11929 16 4.5V17.5C16 17.6881 15.8945 17.8602 15.7269 17.9456C15.5593 18.0309 15.358 18.015 15.2059 17.9044L10 14.1182L4.79409 17.9044C4.64199 18.015 4.4407 18.0309 4.27311 17.9456C4.10553 17.8602 4 17.6881 4 17.5V4.5ZM6.5 3C5.67157 3 5 3.67157 5 4.5V16.5181L9.70592 13.0956C9.88124 12.9681 10.1188 12.9681 10.2941 13.0956L15 16.5181V4.5C15 3.67157 14.3284 3 13.5 3H6.5Z"/></symbol>
+  <symbol id="i-support" viewBox="0 0 20 20"><path d="M10 14.5C8.94957 14.5 8.08828 13.6902 8.00637 12.6608C5.67266 11.839 4 9.61482 4 7C4 3.68629 6.68629 1 10 1C13.1454 1 15.7255 3.42031 15.9795 6.50015C16.0022 6.77536 15.7761 7 15.5 7C15.2239 7 15.0026 6.7755 14.9754 6.5007C14.7248 3.9737 12.5929 2 10 2C7.23858 2 5 4.23858 5 7C5 9.12095 6.32058 10.9335 8.18436 11.6601C8.50175 10.9751 9.19539 10.5 10 10.5C11.1046 10.5 12 11.3954 12 12.5C12 13.6046 11.1046 14.5 10 14.5ZM5.00873 12H5.10126C5.49036 12.3812 5.92373 12.7174 6.39291 13L5.00873 13C4.44786 13 4 13.4467 4 14C4 15.3088 4.62226 16.2837 5.67262 16.9534C6.74318 17.636 8.26489 18 10 18C11.7351 18 13.2568 17.636 14.3274 16.9534C15.3777 16.2837 16 15.3088 16 14C16 13.4478 15.5522 13 15 13L12.9585 13C12.9858 12.8374 13 12.6704 13 12.5C13 12.3296 12.9858 12.1626 12.9585 12L15 12C16.1045 12 17 12.8956 17 14C17 15.6912 16.1672 16.9663 14.865 17.7966C13.583 18.614 11.8547 19 10 19C8.14526 19 6.41697 18.614 5.13499 17.7966C3.83281 16.9663 3 15.6912 3 14C3 12.8869 3.90315 12 5.00873 12ZM14 7C14 8.42652 13.2533 9.67862 12.1294 10.3867C11.8646 10.12 11.5501 9.90271 11.2009 9.75C12.2599 9.28687 13 8.22986 13 7C13 5.34315 11.6569 4 10 4C8.34315 4 7 5.34315 7 7C7 8.22989 7.74009 9.28692 8.79922 9.75003C8.44987 9.90284 8.13539 10.1202 7.87079 10.3868C7.11872 9.91303 6.53552 9.19566 6.23191 8.34544C6.11009 8.00425 6.0333 7.64176 6.00865 7.26515C6.00291 7.1775 6 7.08909 6 7C6 4.79086 7.79086 3 10 3C12.2091 3 14 4.79086 14 7Z"/></symbol>
+  <symbol id="i-signout" viewBox="0 0 20 20"><path d="M8.5 11.25C8.91421 11.25 9.25 10.9142 9.25 10.5C9.25 10.0858 8.91421 9.75 8.5 9.75C8.08579 9.75 7.75 10.0858 7.75 10.5C7.75 10.9142 8.08579 11.25 8.5 11.25ZM11 3.5C11 3.3542 10.9364 3.21567 10.8257 3.12068C10.7151 3.02569 10.5686 2.98371 10.4244 3.00574L3.42445 4.07574C3.18032 4.11306 3 4.32303 3 4.57V15.43C3 15.6769 3.18028 15.8869 3.42438 15.9243L10.4244 16.9953C10.5685 17.0173 10.7151 16.9754 10.8257 16.8804C10.9363 16.7854 11 16.6468 11 16.501V10L16.1722 10L15.1753 10.8737C14.9679 11.0556 14.9468 11.3714 15.1284 11.5793C15.3099 11.7871 15.6253 11.8081 15.8328 11.6263L17.8295 9.8763C17.9379 9.78135 18 9.64419 18 9.50001C18 9.35583 17.9379 9.21867 17.8295 9.12372L15.8328 7.37372C15.6253 7.19188 15.3099 7.21294 15.1284 7.42076C14.9468 7.62858 14.9679 7.94446 15.1753 8.1263L16.1723 9.00002L11 9.00002V3.5ZM10 4.08224V15.9187L4 15.0007V4.99938L10 4.08224ZM12.5 16H12V11H13V15.5C13 15.7761 12.7761 16 12.5 16ZM12 8V4H12.5C12.7761 4 13 4.22386 13 4.5V8H12Z"/></symbol>
+  <symbol id="i-person" viewBox="0 0 20 20"><path d="M10 2C7.79086 2 6 3.79086 6 6C6 8.20914 7.79086 10 10 10C12.2091 10 14 8.20914 14 6C14 3.79086 12.2091 2 10 2ZM7 6C7 4.34315 8.34315 3 10 3C11.6569 3 13 4.34315 13 6C13 7.65685 11.6569 9 10 9C8.34315 9 7 7.65685 7 6ZM5.00873 11C3.90315 11 3 11.8869 3 13C3 14.6912 3.83281 15.9663 5.13499 16.7966C6.41697 17.614 8.14526 18 10 18C11.8547 18 13.583 17.614 14.865 16.7966C16.1672 15.9663 17 14.6912 17 13C17 11.8956 16.1045 11 15 11L5.00873 11ZM4 13C4 12.4467 4.44786 12 5.00873 12L15 12C15.5522 12 16 12.4478 16 13C16 14.3088 15.3777 15.2837 14.3274 15.9534C13.2568 16.636 11.7351 17 10 17C8.26489 17 6.74318 16.636 5.67262 15.9534C4.62226 15.2837 4 14.3088 4 13Z"/></symbol>
+</svg>
+
 <main class="poster">
 
-  <header class="mast">
+  <header class="hero">
     <div>
-      <div class="brand">
-        <img class="logo" src="img/etc-logo.png" alt="Logo ETC">
-        <div><b>ETC</b><span>Elite TC Champions</span></div>
-      </div>
-      <h1>Temukan tim.<br><em>Mulai kolaborasi.</em></h1>
-      <p class="lede">Aplikasi desktop untuk mahasiswa yang sedang mencari anggota tim lomba atau proyek, mencari tim untuk diikuti, atau mencari mentor sesuai keahlian.</p>
+      <span class="pill">Studi Kasus ETS PBKK</span>
+      <h1>ETC<span>.</span></h1>
+      <p class="sub">Elite TC Champions<br>Aplikasi Desktop Rekrutmen Tim Mahasiswa</p>
+      <span class="for">Untuk mahasiswa Teknik Informatika ITS</span>
+      <p class="lede">Cari anggota tim lomba atau proyek, lamar ke tim lain, dan temukan mentor sesuai keahlian. Satu akun bisa merekrut sekaligus melamar.</p>
+      <p class="meta"><span><b>Hosea Felix Sanjaya</b> &middot; 5025241177</span><span>PBKK Kelas D</span><span>Ubuntu dan Windows</span></p>
     </div>
-    <dl class="who">
-      <dt>Mata kuliah</dt><dd>PBKK D, Evaluasi Tengah Semester</dd>
-      <dt>Disusun oleh</dt><dd>Hosea Felix Sanjaya, 5025241177</dd>
-      <dt>Platform</dt><dd>Desktop Ubuntu dan Windows</dd>
-      <dt>Teknologi inti</dt><dd>C#, .NET 10, Avalonia, SQL Server</dd>
-    </dl>
+    <div class="stage">
+      <div class="badge"><img src="img/etc-logo.png" alt="Logo ETC"><div><b>Temukan tim.</b><span>Mulai kolaborasi.</span></div></div>
+      <div class="win">
+        <div class="bar"><img src="img/etc-logo.png" alt=""><b>ETC</b> Dashboard<span class="ctl" aria-hidden="true"><i></i><i></i></span></div>
+        <img src="img/full-dashboard.png" width="1440" height="900" alt="Halaman Dashboard ETC berisi ringkasan rekrutmen aktif, lamaran menunggu, lamaran diterima, bookmark, dan daftar lamaran terbaru">
+      </div>
+    </div>
   </header>
 
-  <div class="body">
-
-    <!-- Soal 2 di kolom kiri: alasan aplikasi dibuat menjelaskan kenapa fiturnya seperti itu. -->
-    <section class="col" aria-labelledby="h-why">
-      <div class="intro">
-        <div class="q">Soal 2 &middot; Latar belakang dan manfaat</div>
-        <h2 id="h-why">Kenapa ETC dibuat</h2>
-        <p>Mencari anggota tim lomba atau proyek biasanya lewat grup chat dan poster yang cepat tenggelam. Posisi apa yang dicari, skill apa yang dibutuhkan, kapan tenggatnya, dan siapa yang sudah diterima tidak tercatat di satu tempat.</p>
-        <p>Pelamar juga sering tidak tahu apakah lamarannya sudah dibaca, diterima, atau ditolak.</p>
-        <p class="quote">ETC mempertemukan mahasiswa yang merekrut dengan mahasiswa yang mencari tim, dan menyimpan hasil seleksi agar kedua pihak membaca status yang sama.</p>
+  <div class="row r1">
+    <section class="card" aria-labelledby="s1">
+      <h2 id="s1"><span class="n">1</span>Latar Belakang</h2>
+      <p class="lead">Rekrutmen tim lomba dan proyek masih lewat grup chat dan poster yang cepat tenggelam. Posisi, skill, tenggat, dan kuota tidak tercatat di satu tempat.</p>
+      <p class="lead">Pelamar juga sering tidak tahu hasil lamarannya.</p>
+      <div class="solve">
+        <span class="mark"><svg class="ico"><use href="#i-team"/></svg></span>
+        <div><b>Solusi</b><p>Aplikasi desktop ETC: rekrutmen, lamaran, dan hasil seleksi tersimpan di satu tempat dan bisa dibaca kedua pihak.</p></div>
       </div>
-      <table class="map">
-        <thead><tr><th scope="col">Masalah</th><th scope="col">Jawaban di ETC</th></tr></thead>
-        <tbody>
-          <tr><td>Kebutuhan anggota tim tidak dijelaskan dengan rapi.</td><td>Rekrutmen berisi <b>kegiatan, posisi, skill, kuota, tenggat, biaya, dan kontak</b>.</td></tr>
-          <tr><td>Sulit memilah kesempatan yang relevan dan masih buka.</td><td><b>Pencarian dan filter</b> kategori, posisi, skill, ketersediaan, plus bookmark.</td></tr>
-          <tr><td>Pembuat kehilangan jejak siapa melamar ke posisi mana.</td><td><b>Daftar pelamar per posisi</b> dengan profil, pesan, dan tombol Terima atau Tolak.</td></tr>
-          <tr><td>Pelamar tidak tahu hasil lamarannya.</td><td>Halaman <b>Lamaran saya</b> menampilkan status, waktu pengajuan, dan detail kegiatan.</td></tr>
-          <tr><td>Informasi mentor tersebar dan sulit dicari per keahlian.</td><td><b>Direktori mentor</b> dengan foto, skill, pengalaman, dan tautan Google Form.</td></tr>
-        </tbody>
-      </table>
     </section>
 
-    <section class="col" aria-labelledby="h-scope">
-      <div class="scope-head">
-        <div>
-          <div class="q">Soal 1 &middot; Deskripsi dan ruang lingkup fitur</div>
-          <h2 id="h-scope" style="margin:0">Satu akun, dua peran</h2>
-        </div>
-        <p>Tidak ada akun khusus perekrut atau pelamar. Mahasiswa yang sama bisa membuka rekrutmen untuk lomba A sambil melamar ke tim lomba B. Hak akses ditentukan oleh siapa pemilik datanya.</p>
-      </div>
+    <section class="card" aria-labelledby="s2">
+      <h2 id="s2"><span class="n">2</span>Manfaat Aplikasi</h2>
+      <ul class="check">
+        <li><span><b>Pembuat rekrutmen</b> menulis posisi, skill, kuota, dan tenggat dalam satu posting.</span></li>
+        <li><span><b>Pelamar</b> hanya melihat posisi yang masih menerima lamaran.</span></li>
+        <li><span>Hasil seleksi bisa dipantau di halaman <b>Lamaran saya</b>.</span></li>
+        <li><span>Kuota tidak bisa terlampaui karena dicek di database.</span></li>
+        <li><span><b>Mentor</b> bisa dicari per nama atau keahlian.</span></li>
+      </ul>
+    </section>
 
-      <div class="lanes">
-        <div class="lane">
-          <div class="tag">Peran 1</div>
-          <h3>Merekrut anggota</h3>
-          <ol class="steps">
-            <li>Lengkapi profil: nama, angkatan, dan minimal satu skill.</li>
-            <li>Buat draft rekrutmen, isi posisi beserta kuota dan skill.</li>
-            <li>Publikasikan setelah tenggat, kontak, dan mode kegiatan valid.</li>
-            <li>Tinjau pelamar per posisi, lalu Terima atau Tolak.</li>
-            <li>Tutup rekrutmen saat tim sudah lengkap.</li>
-          </ol>
-          <div class="flow" aria-label="Status rekrutmen: Draft, lalu Dibuka, lalu Ditutup">
-            <span class="lbl">Status rekrutmen</span>
-            <span class="st neutral">Draft</span><span class="arr" aria-hidden="true">&rsaquo;</span>
-            <span class="st open">Dibuka</span><span class="arr" aria-hidden="true">&rsaquo;</span>
-            <span class="st neutral">Ditutup</span>
-          </div>
-        </div>
-        <div class="lane">
-          <div class="tag">Peran 2</div>
-          <h3>Melamar ke tim lain</h3>
-          <ol class="steps">
-            <li>Cari rekrutmen, filter berdasarkan kategori, posisi, atau skill.</li>
-            <li>Buka detail, simpan ke bookmark kalau belum yakin.</li>
-            <li>Pilih satu posisi, tulis pesan perkenalan dan portofolio.</li>
-            <li>Pantau hasilnya di halaman Lamaran saya.</li>
-            <li>Batalkan selama status masih Menunggu.</li>
-          </ol>
-          <div class="flow" aria-label="Status lamaran: Menunggu, lalu Diterima, Ditolak, atau Dibatalkan">
-            <span class="lbl">Status lamaran</span>
-            <span class="st neutral">Menunggu</span><span class="arr" aria-hidden="true">&rsaquo;</span>
-            <span class="st ok">Diterima</span>
-            <span class="st no">Ditolak</span>
-            <span class="st neutral">Dibatalkan</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="modules">
-        <div><h3>Akun dan profil</h3><p>Register, login, logout dengan konfirmasi. Profil berisi foto, angkatan, skill, bio, pengalaman, dan tautan portofolio.</p></div>
-        <div><h3>Dashboard</h3><p>Rekrutmen aktif, lamaran menunggu, lamaran diterima, dan jumlah bookmark milik akun sendiri.</p></div>
-        <div><h3>Cari rekrutmen</h3><p>Cari judul atau nama kegiatan, filter, dan pagination 12 item per halaman. Default hanya yang masih menerima lamaran.</p></div>
-        <div><h3>Rekrutmen saya</h3><p>Buat, edit, publikasikan, tutup, dan hapus draft. Posisi dan kuota terkunci setelah ada pelamar.</p></div>
-        <div><h3>Lamaran dan seleksi</h3><p>Kirim dan batalkan lamaran. Pemilik membaca pelamar per posisi, lalu menerima atau menolak.</p></div>
-        <div><h3>Bookmark dan mentor</h3><p>Simpan rekrutmen untuk dibuka nanti. Direktori mentor bisa dicari per nama atau skill.</p></div>
-      </div>
-
-      <div class="rules">
-        <div>
-          <h3>Aturan yang dijaga aplikasi</h3>
-          <ul>
-            <li>Lamaran hanya diterima jika rekrutmen Dibuka, belum lewat tenggat, dan posisi belum penuh.</li>
-            <li>Satu mahasiswa hanya punya satu lamaran per rekrutmen, dan tidak bisa melamar posting sendiri.</li>
-            <li>Penerimaan berjalan dalam transaksi SQL, jadi dua penerimaan bersamaan tidak melebihi kuota.</li>
-            <li>Waktu disimpan dalam UTC dan ditampilkan dengan label WIB.</li>
-          </ul>
-        </div>
-        <div class="out">
-          <h3>Di luar ruang lingkup</h3>
-          <ul>
-            <li>Chat, notifikasi real-time, dan email otomatis.</li>
-            <li>Pembayaran. Biaya lomba hanya informasi.</li>
-            <li>Pencocokan otomatis. Pembuat menilai sendiri.</li>
-            <li>Panel admin dan akun khusus mentor.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="q gains-label">Soal 2 &middot; Manfaat bagi tiap pengguna</div>
-      <div class="gains">
-        <div><h3>Bagi pembuat rekrutmen</h3><p>Satu posting menjangkau pelamar yang skill-nya cocok. Kuota tidak bisa terlampaui karena penerimaan dicek di database.</p></div>
-        <div><h3>Bagi pelamar</h3><p>Hanya melihat posisi yang masih menerima lamaran, lalu bisa memantau hasilnya tanpa bertanya ulang ke pembuat.</p></div>
-        <div><h3>Bagi yang butuh arahan</h3><p>Mentor bisa dicari berdasarkan nama atau skill, lalu diajukan lewat formulir.</p></div>
-      </div>
+    <section class="card" aria-labelledby="s3">
+      <h2 id="s3"><span class="n">3</span>Teknologi yang Digunakan</h2>
+      <ul class="tech">
+        <li><span class="t navy">C#</span><b>C#</b>Bahasa</li>
+        <li><span class="t blue">.NET</span><b>.NET 10</b>Runtime</li>
+        <li><span class="t yellow">AX</span><b>Avalonia</b>UI desktop</li>
+        <li><span class="t grey">MVVM</span><b>MVVM Toolkit</b>Binding</li>
+        <li><span class="t red">SQL</span><b>SQL Server</b>Database</li>
+        <li><span class="t green">ADO</span><b>ADO.NET</b>Akses data</li>
+        <li><span class="t blue">DKR</span><b>Docker</b>SQL lokal</li>
+        <li><span class="t grey">xU</span><b>xUnit</b>Pengujian</li>
+      </ul>
     </section>
   </div>
 
-  <section class="shots-band" aria-labelledby="h-shots">
-    <div class="shots-head">
-      <h2 id="h-shots">Tampilan aplikasi</h2>
-      <p>Diambil langsung dari ETC yang dijalankan dengan data demo.</p>
-    </div>
-    <div class="shots">
-      <figure>
-        <div class="frame"><div class="bar">Dashboard</div><img src="img/ss-dashboard.png" width="1170" height="615" alt="Dashboard ETC: empat ringkasan akun, daftar lamaran terbaru, dan rekrutmen milik sendiri"></div>
-        <figcaption>Ringkasan akun dan aktivitas terbaru, masing-masing dengan pintasan ke halamannya.</figcaption>
-      </figure>
-        <figure>
-          <div class="frame"><div class="bar">Cari rekrutmen</div><img src="img/ss-search.png" width="1170" height="300" alt="Kartu hasil pencarian rekrutmen berisi posisi, kuota, skill, dan tenggat"></div>
-          <figcaption>Setiap kartu menunjukkan posisi, sisa kuota, skill, dan tenggat.</figcaption>
-        </figure>
-        <figure>
-          <div class="frame"><div class="bar">Detail rekrutmen</div><img src="img/ss-detail.png" width="1170" height="490" alt="Detail rekrutmen dengan jadwal, biaya, dan panel posisi anggota"></div>
-          <figcaption>Jadwal, biaya, dan posisi dibaca sebelum memutuskan melamar.</figcaption>
-        </figure>
-    </div>
-  </section>
+  <div class="row r2">
+    <section class="card" aria-labelledby="s4">
+      <h2 id="s4"><span class="n">4</span>Fitur Utama Sistem</h2>
+      <ul class="feat">
+        <li class="c1"><span class="fi"><svg class="ico"><use href="#i-person"/></svg></span><b>Akun dan Profil</b>Register, login, foto, skill, portofolio.</li>
+        <li class="c2"><span class="fi"><svg class="ico"><use href="#i-search"/></svg></span><b>Cari Rekrutmen</b>Pencarian, filter skill, pagination.</li>
+        <li class="c3"><span class="fi"><svg class="ico"><use href="#i-team"/></svg></span><b>Rekrutmen Saya</b>Draft, publikasi, edit, tutup posting.</li>
+        <li class="c4"><span class="fi"><svg class="ico"><use href="#i-document"/></svg></span><b>Lamaran dan Seleksi</b>Melamar, membatalkan, menerima, menolak.</li>
+        <li class="c5"><span class="fi"><svg class="ico"><use href="#i-bookmark"/></svg></span><b>Bookmark</b>Simpan rekrutmen untuk dibuka nanti.</li>
+        <li class="c6"><span class="fi"><svg class="ico"><use href="#i-support"/></svg></span><b>Direktori Mentor</b>Cari mentor, buka Google Form.</li>
+      </ul>
+    </section>
 
-  <footer class="foot">
-    <div>
-      <h3>Dibangun dengan</h3>
-      <div class="stack-list">
-        <span>C# dan .NET 10</span><span>Avalonia UI</span><span>MVVM</span><span>CommunityToolkit.Mvvm</span><span>SQL Server</span><span>ADO.NET</span><span>Docker</span><span>xUnit</span>
+    <section class="card" aria-labelledby="s5">
+      <h2 id="s5"><span class="n">5</span>Menu Navigasi</h2>
+      <div class="nav-mock" role="img" aria-label="Menu samping ETC: Dashboard, Cari rekrutmen, Rekrutmen saya, Lamaran saya, Bookmark, Mentor, Profil saya, dan Keluar">
+        <div class="brand"><img src="img/etc-logo.png" alt=""><b>ETC</b><span>#RISTEKNIATBAIK</span></div>
+        <ul>
+          <li class="on"><svg class="ico"><use href="#i-home"/></svg>Dashboard</li>
+          <li><svg class="ico"><use href="#i-search"/></svg>Cari rekrutmen</li>
+          <li><svg class="ico"><use href="#i-team"/></svg>Rekrutmen saya</li>
+          <li><svg class="ico"><use href="#i-document"/></svg>Lamaran saya</li>
+          <li><svg class="ico"><use href="#i-bookmark"/></svg>Bookmark</li>
+          <li><svg class="ico"><use href="#i-support"/></svg>Mentor</li>
+          <hr>
+          <li class="prof"><svg class="ico"><use href="#i-person"/></svg>Profil saya</li>
+          <li class="out"><svg class="ico"><use href="#i-signout"/></svg>Keluar</li>
+        </ul>
       </div>
-      <p class="note">View, ViewModel, service, dan akses database dipisah per fitur. Schema SQL ditanam ke aplikasi dan disiapkan lewat perintah <code>--init-db</code> dan <code>--seed-demo</code>.</p>
-    </div>
-    <div>
-      <h3>Lihat lebih lanjut</h3>
-      <p>Repository: <a href="https://github.com/abidalfrz/ETC">github.com/abidalfrz/ETC</a></p>
-      <p>Video demo: <a href="https://youtu.be/fST3n_nGM44">youtu.be/fST3n_nGM44</a></p>
-      <p class="note">Nama dan isian pada tangkapan layar berasal dari data demo, bukan pengguna sungguhan.</p>
-    </div>
-  </footer>
+      <p class="note">Di jendela sempit, menu menjadi flyout yang bisa ditutup dengan Escape.</p>
+    </section>
+  </div>
+
+  <div class="row r3">
+    <section class="card" aria-labelledby="s6">
+      <h2 id="s6"><span class="n">6</span>Cari Rekrutmen</h2>
+      <div class="win">
+        <div class="bar"><img src="img/etc-logo.png" alt=""><b>ETC</b> Cari rekrutmen<span class="ctl" aria-hidden="true"><i></i><i></i></span></div>
+        <img src="img/crop-search.png" width="1210" height="700" alt="Halaman Cari rekrutmen dengan kolom pencarian, filter, dan kartu hasil berisi posisi, kuota, skill, dan tenggat">
+      </div>
+      <p class="shot-cap">Kartu hasil memuat posisi, sisa kuota, skill, dan tenggat.</p>
+    </section>
+
+    <section class="card" aria-labelledby="s7">
+      <h2 id="s7"><span class="n">7</span>Formulir Rekrutmen</h2>
+      <div class="win">
+        <div class="bar"><img src="img/etc-logo.png" alt=""><b>ETC</b> Form rekrutmen<span class="ctl" aria-hidden="true"><i></i><i></i></span></div>
+        <img src="img/crop-recruitment-form.png" width="1210" height="700" alt="Formulir rekrutmen dengan isian judul, kategori, nama lomba atau proyek, deskripsi, mode kegiatan, dan lokasi">
+      </div>
+      <p class="shot-cap">Draft boleh belum lengkap. Kolom bertanda * wajib saat publikasi.</p>
+    </section>
+
+    <section class="card" aria-labelledby="s8">
+      <h2 id="s8"><span class="n">8</span>Pengelolaan Rekrutmen</h2>
+      <div class="win">
+        <div class="bar"><img src="img/etc-logo.png" alt=""><b>ETC</b> Rekrutmen saya<span class="ctl" aria-hidden="true"><i></i><i></i></span></div>
+        <img src="img/crop-mine.png" width="1210" height="700" alt="Halaman Rekrutmen saya berisi posting berstatus Draft dan Dibuka dengan tombol Detail, Edit, Publikasikan, Lihat pelamar, dan Tutup rekrutmen">
+      </div>
+      <p class="shot-cap">Tombol mengikuti status: draft dipublikasikan, posting dibuka dilihat pelamarnya atau ditutup.</p>
+    </section>
+  </div>
+
+  <div class="row r4">
+      <section class="card" aria-labelledby="s9">
+        <h2 id="s9"><span class="n">9</span>Alur Penggunaan Sistem</h2>
+        <ol class="flow">
+          <li><span class="c k1"><svg class="ico"><use href="#i-person"/></svg></span>Daftar dan lengkapi profil</li>
+          <li><span class="c k2"><svg class="ico"><use href="#i-team"/></svg></span>Buat atau cari rekrutmen</li>
+          <li><span class="c k3"><svg class="ico"><use href="#i-search"/></svg></span>Baca detail posisi</li>
+          <li><span class="c k4"><svg class="ico"><use href="#i-document"/></svg></span>Kirim lamaran</li>
+          <li><span class="c k5"><svg class="ico"><use href="#i-team"/></svg></span>Pemilik menyeleksi</li>
+          <li><span class="c k6"><svg class="ico"><use href="#i-home"/></svg></span>Hasil di Lamaran saya</li>
+        </ol>
+        <div class="states">
+          <div><span class="l">Status rekrutmen</span><span class="st n">Draft</span><i>&rsaquo;</i><span class="st o">Dibuka</span><i>&rsaquo;</i><span class="st n">Ditutup</span></div>
+          <div><span class="l">Status lamaran</span><span class="st n">Menunggu</span><i>&rsaquo;</i><span class="st g">Diterima</span><span class="st r">Ditolak</span><span class="st n">Dibatalkan</span></div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="s10">
+        <h2 id="s10"><span class="n">10</span>Struktur Folder Proyek</h2>
+        <ul class="tree">
+          <li><span class="d"></span><b>ETC/</b></li>
+          <li><span class="d"></span>src/Etc.Desktop/</li>
+          <li class="sub"><span class="d"></span>database/</li>
+          <li class="sub"><span class="d"></span>Features/ <em>per fitur</em></li>
+          <li class="sub"><span class="f"></span>001-schema.sql</li>
+          <li class="sub"><span class="d"></span>Infrastructure/ <em>koneksi SQL</em></li>
+          <li class="sub"><span class="f"></span>002-catalog.sql</li>
+          <li class="sub"><span class="d"></span>Shared/, Styles/, Assets/</li>
+          <li class="sub"><span class="f"></span>003-mentor-directory.sql</li>
+          <li class="sub"><span class="f"></span>App.axaml, Program.cs</li>
+          <li><span class="d"></span>tests/ <em>unit dan integrasi</em></li>
+          <li><span class="d"></span>tools/Etc.RenderChecks/</li>
+        </ul>
+      </section>
+  </div>
+
+  <div class="row r5">
+    <section class="card" aria-labelledby="s11">
+      <h2 id="s11"><span class="n">11</span>Skenario Pengujian</h2>
+      <ol class="nlist">
+        <li><span>Dua penerimaan untuk slot terakhir <span class="arrow">&rarr;</span> hanya satu berhasil.</span></li>
+        <li><span>Melamar posting sendiri <span class="arrow">&rarr;</span> ditolak.</span></li>
+        <li><span>Melamar ulang setelah dibatalkan <span class="arrow">&rarr;</span> ditolak.</span></li>
+        <li><span>Tenggat lewat saat formulir diisi <span class="arrow">&rarr;</span> ditolak.</span></li>
+        <li><span>Tombol kirim ditekan dua kali <span class="arrow">&rarr;</span> satu lamaran tersimpan.</span></li>
+      </ol>
+      <p class="note">Dari <code>tests/Etc.IntegrationTests</code>.</p>
+    </section>
+
+    <section class="card" aria-labelledby="s12">
+      <h2 id="s12"><span class="n">12</span>Tahapan Pengerjaan</h2>
+      <ol class="nlist navy">
+        <li><span>Scope dan aturan di PRD</span></li>
+        <li><span>Schema, konfigurasi, init dan seed</span></li>
+        <li><span>Akun, sesi, otorisasi, profil</span></li>
+        <li><span>Pencarian, detail, bookmark, draft</span></li>
+        <li><span>Lamaran, seleksi, kuota, dashboard</span></li>
+        <li><span>Mentor, keyboard, dan kontras</span></li>
+        <li><span>Regresi, uji lintas komputer, README</span></li>
+      </ol>
+    </section>
+
+    <section class="card" aria-labelledby="s13">
+      <h2 id="s13"><span class="n">13</span>Hasil yang Diharapkan</h2>
+      <ul class="goal">
+        <li><span>Rekrutmen bisa dibuat, dipublikasikan, ditutup.</span></li>
+        <li><span>Seleksi konsisten tanpa kuota berlebih.</span></li>
+        <li><span>Data akun lain tidak bisa diubah.</span></li>
+        <li><span>Statistik dashboard sesuai data.</span></li>
+        <li><span>Setup bisa diulang di komputer lain.</span></li>
+        <li><span>Alur utama bisa lewat keyboard.</span></li>
+      </ul>
+      <p class="out-scope"><b>Di luar lingkup:</b> chat, notifikasi real-time, pembayaran, panel admin, akun mentor.</p>
+    </section>
+
+    <aside class="sign" aria-label="Identitas dan tautan">
+      <div>
+        <img src="img/etc-logo.png" alt="Logo ETC">
+        <b>ETC</b>
+        <span>Elite TC Champions</span>
+        <span>#RISTEKNIATBAIK</span>
+      </div>
+      <div>
+        <div class="links">
+          <a href="https://github.com/abidalfrz/ETC">github.com/abidalfrz/ETC</a>
+          <a href="https://youtu.be/fST3n_nGM44">youtu.be/fST3n_nGM44</a>
+        </div>
+        <p class="who">Tangkapan layar diambil dari aplikasi dengan data demo.</p>
+      </div>
+    </aside>
+  </div>
 
 </main>
 </body>
