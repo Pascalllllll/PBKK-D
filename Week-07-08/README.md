@@ -15,6 +15,90 @@
 
 [![Demo ETC](https://img.youtube.com/vi/fST3n_nGM44/maxresdefault.jpg)](https://youtu.be/fST3n_nGM44)
 
+## Jawaban Soal
+
+### Soal 1. Deskripsi dan ruang lingkup fitur
+
+ETC adalah aplikasi desktop berbasis Avalonia untuk mempertemukan mahasiswa yang membutuhkan anggota tim lomba atau proyek dengan mahasiswa yang sedang mencari tim. Aplikasi ini juga menyediakan direktori mentor yang bisa dicari berdasarkan keahlian.
+
+Tidak ada akun khusus perekrut atau pelamar. Satu akun mahasiswa bisa membuka rekrutmen untuk lomba A sambil melamar ke tim lomba B. Hak akses ditentukan oleh siapa pemilik datanya, dan pengecekannya dilakukan di service, bukan hanya dengan menyembunyikan tombol.
+
+**Alur sebagai pembuat rekrutmen**
+
+1. Lengkapi profil: nama, angkatan, dan minimal satu skill.
+2. Buat draft rekrutmen, lalu isi posisi beserta kuota dan skill yang dibutuhkan.
+3. Publikasikan setelah tenggat, kontak, dan mode kegiatan valid.
+4. Tinjau pelamar per posisi, lalu terima atau tolak.
+5. Tutup rekrutmen saat tim sudah lengkap.
+
+Status rekrutmen: `Draft` → `Dibuka` → `Ditutup`.
+
+**Alur sebagai pelamar**
+
+1. Cari rekrutmen dan filter berdasarkan kategori, posisi, skill, atau ketersediaan.
+2. Buka detail, simpan ke bookmark jika belum yakin.
+3. Pilih satu posisi, tulis pesan perkenalan dan tautan portofolio.
+4. Pantau hasilnya di halaman Lamaran saya.
+5. Batalkan lamaran selama statusnya masih Menunggu.
+
+Status lamaran: `Menunggu` → `Diterima`, `Ditolak`, atau `Dibatalkan`.
+
+**Ruang lingkup fitur**
+
+| Area | Isi |
+| :-- | :-- |
+| Akun dan profil | Onboarding, register, login, logout dengan konfirmasi, profil berisi foto, angkatan, skill, bio, pengalaman, dan tautan portofolio. Profil publik tidak menampilkan email login. |
+| Dashboard | Jumlah rekrutmen aktif, lamaran menunggu, lamaran diterima, dan bookmark milik akun sendiri, ditambah daftar aktivitas terbaru. |
+| Cari rekrutmen | Pencarian judul atau nama kegiatan, filter kategori, posisi, skill, dan ketersediaan, pagination 12 item per halaman. Filter awal hanya menampilkan rekrutmen yang masih menerima lamaran. |
+| Rekrutmen saya | Membuat, mengedit, mempublikasikan, menutup, dan menghapus draft. Posisi, skill, dan kuota terkunci setelah ada pelamar. |
+| Lamaran dan seleksi | Mengirim dan membatalkan lamaran. Pemilik melihat pelamar per posisi beserta profil dan pesannya, lalu menerima atau menolak. |
+| Bookmark | Menyimpan rekrutmen untuk dibuka nanti. Rekrutmen yang sudah ditutup tetap bisa dibaca dari bookmark. |
+| Direktori mentor | Kartu mentor dengan foto, angkatan, fokus, skill, dan pengalaman. Bisa dicari per nama atau skill. Tombol *Butuh mentor?* membuka Google Form di browser. |
+| Setup | Perintah `--init-db` untuk menyiapkan schema dan `--seed-demo` untuk data demo, sehingga aplikasi bisa dijalankan di komputer lain. |
+
+**Aturan yang dijaga aplikasi**
+
+- Lamaran hanya diterima jika rekrutmen berstatus Dibuka, belum lewat tenggat, dan posisi belum penuh.
+- Satu mahasiswa hanya punya satu lamaran per rekrutmen, dan tidak bisa melamar rekrutmen miliknya sendiri.
+- Penerimaan pelamar berjalan dalam transaksi SQL, jadi dua penerimaan yang terjadi bersamaan tidak bisa melebihi kuota.
+- Waktu disimpan dalam UTC dan ditampilkan dengan label WIB.
+
+**Di luar ruang lingkup:** chat, notifikasi real-time, pembayaran (biaya lomba hanya informasi), pencocokan otomatis berbasis skor, panel admin, akun khusus mentor, dan mode gelap.
+
+### Soal 2. Latar belakang dan manfaat
+
+**Latar belakang**
+
+Mencari anggota tim lomba atau proyek biasanya dilakukan lewat grup chat dan poster yang cepat tenggelam oleh pesan lain. Informasi penting seperti posisi apa yang dicari, skill yang dibutuhkan, tenggat pendaftaran, dan siapa yang sudah diterima tidak tercatat di satu tempat. Dari sisi pelamar, sering tidak jelas apakah lamarannya sudah dibaca, diterima, atau ditolak.
+
+ETC dibuat untuk menyatukan proses itu: pembuat rekrutmen menjelaskan kebutuhannya secara terstruktur, pelamar memilih posisi yang cocok, dan hasil seleksi tersimpan sehingga kedua pihak membaca status yang sama.
+
+| Masalah | Jawaban di ETC |
+| :-- | :-- |
+| Kebutuhan anggota tim tidak dijelaskan dengan rapi. | Rekrutmen berisi kegiatan, posisi, skill, kuota, tenggat, biaya, dan kontak. |
+| Sulit memilah kesempatan yang relevan dan masih buka. | Pencarian, filter, detail posisi, bookmark, dan alasan jika pendaftaran tidak tersedia. |
+| Pembuat kehilangan jejak siapa melamar ke posisi mana. | Daftar pelamar per posisi dengan profil, pesan, dan keputusan terima atau tolak. |
+| Pelamar tidak tahu hasil lamarannya. | Halaman Lamaran saya menampilkan status, waktu pengajuan, dan detail kegiatan. |
+| Informasi mentor tersebar dan sulit dicari per keahlian. | Direktori mentor dengan foto, skill, pengalaman, dan tautan Google Form. |
+
+**Manfaat**
+
+- **Bagi pembuat rekrutmen:** satu posting menjangkau pelamar dengan skill yang sesuai, pelamar terkumpul per posisi, dan kuota tidak bisa terlampaui karena penerimaan dicek di database.
+- **Bagi pelamar:** hanya melihat posisi yang masih menerima lamaran, bisa menyimpan kandidat lomba ke bookmark, dan bisa memantau hasil lamaran tanpa harus bertanya ulang ke pembuat.
+- **Bagi mahasiswa yang butuh arahan:** mentor bisa dicari berdasarkan nama atau skill, lalu diajukan lewat formulir.
+- **Bagi pengembangan berikutnya:** data rekrutmen, lamaran, dan mentor tersimpan di SQL Server dengan aturan bisnis yang jelas, sehingga fitur seperti notifikasi atau chat bisa ditambahkan di atasnya.
+
+### Soal 3. Poster infografis
+
+Poster satu halaman tersedia dalam dua bentuk:
+
+- [poster-etc.html](./poster-etc.html): versi HTML. Buka di browser, lalu cetak (Ctrl+P) untuk mendapatkan satu lembar A3. Tampilannya juga menyesuaikan layar HP.
+- [img/poster-etc.png](./img/poster-etc.png): versi gambar, ditampilkan di bawah.
+
+Tangkapan layar di poster diambil langsung dari aplikasi ETC yang dijalankan dengan data demo. Warna, font DM Sans, dan logo mengikuti aset aplikasi.
+
+![Poster infografis ETC](./img/poster-etc.png)
+
 ## 1. Tentang Project
 ETC (Elite TC Champions) adalah aplikasi desktop untuk membantu mahasiswa mencari anggota tim, menemukan rekrutmen lomba atau proyek, dan mencari mentor sesuai keahlian. Satu akun bisa membuat rekrutmen sendiri sekaligus melamar ke rekrutmen mahasiswa lain.
 
