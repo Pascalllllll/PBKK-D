@@ -49,7 +49,7 @@
 </details>
 
 <details>
-<summary>Week 09</summary>
+<summary>Week 09 - Pengenalan CodeIgniter 4: SIAKAD dan Toko Online</summary>
 
 [Week 09](./Week-09/README.md)
 
