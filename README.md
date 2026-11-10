@@ -56,7 +56,7 @@
 </details>
 
 <details>
-<summary>Week 10</summary>
+<summary>Week 10 - Routing, Controller, dan View CodeIgniter 4: Toko Online BelanjaKu</summary>
 
 [Week 10](./Week-10/README.md)
 
