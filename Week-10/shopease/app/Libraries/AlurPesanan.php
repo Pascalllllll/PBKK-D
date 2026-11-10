@@ -186,7 +186,7 @@ class AlurPesanan
         model(PesananModel::class)->update($pesananId, ['status' => $ke]);
     }
 
-    /** BK-261110-7Q3F: tanggal + 4 karakter acak (tanpa huruf yang mirip angka). */
+    /** SE-261110-7Q3F: tanggal + 4 karakter acak (tanpa huruf yang mirip angka). */
     private function kodeBaru(): string
     {
         $huruf = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
@@ -195,7 +195,7 @@ class AlurPesanan
             for ($i = 0; $i < 4; $i++) {
                 $acak .= $huruf[random_int(0, strlen($huruf) - 1)];
             }
-            $kode = 'BK-' . date('ymd') . '-' . $acak;
+            $kode = 'SE-' . date('ymd') . '-' . $acak;
         } while (model(PesananModel::class)->where('kode', $kode)->countAllResults() > 0);
 
         return $kode;

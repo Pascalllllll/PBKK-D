@@ -7,7 +7,7 @@
 <body>
 <div class="panel-wrap">
 <aside class="panel-sidebar p-3"><div class="isi">
-    <a class="brand fs-4 text-decoration-none px-2 mb-3 d-block" href="<?= url_to('panel') ?>" style="color:#5eead4!important"><i class="bi bi-bag-heart-fill me-1"></i>Belanja<span>Ku</span></a>
+    <a class="brand fs-4 text-decoration-none px-2 mb-3 d-block" href="<?= url_to('panel') ?>" style="color:#5eead4!important"><i class="bi bi-bag-heart-fill me-1"></i>Shop<span>Ease</span></a>
     <nav class="nav flex-column gap-1">
         <a class="nav-link<?= menu_aktif('/panel', true) ?>" href="<?= url_to('panel') ?>"><i class="bi bi-speedometer2"></i>Dashboard</a>
 

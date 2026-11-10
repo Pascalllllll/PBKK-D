@@ -22,8 +22,8 @@
         </div>
         <div class="small text-secondary mt-3">
             Akun contoh: <code>budi@mail.test</code> / <code>budi1234</code> (pelanggan),
-            <code>admin@belanjaku.test</code> / <code>admin123</code>,
-            <code>gudang@belanjaku.test</code> / <code>gudang123</code>.
+            <code>admin@shopease.test</code> / <code>admin123</code>,
+            <code>gudang@shopease.test</code> / <code>gudang123</code>.
         </div>
     </div>
 </div>

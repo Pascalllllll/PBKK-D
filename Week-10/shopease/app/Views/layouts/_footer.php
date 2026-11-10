@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-md-5">
-                <div class="fs-4 fw-bold text-white mb-2"><i class="bi bi-bag-heart-fill me-1"></i>BelanjaKu</div>
+                <div class="fs-4 fw-bold text-white mb-2"><i class="bi bi-bag-heart-fill me-1"></i>ShopEase</div>
                 <p class="small mb-0">Toko online kebutuhan kuliah dan sehari-hari. Dibuat untuk tugas Pemrograman Berbasis Kerangka Kerja (D) dengan CodeIgniter <?= \CodeIgniter\CodeIgniter::CI_VERSION ?>.</p>
             </div>
             <div class="col-6 col-md-3">
@@ -14,7 +14,7 @@
                 </ul>
             </div>
             <div class="col-6 col-md-4">
-                <div class="fw-semibold text-white mb-2">BelanjaKu</div>
+                <div class="fw-semibold text-white mb-2">ShopEase</div>
                 <ul class="list-unstyled small mb-0">
                     <li><a href="<?= url_to('tentang') ?>">Tentang kami</a></li>
                     <li><a href="<?= url_to('kontak') ?>">Kontak</a></li>
@@ -23,6 +23,6 @@
             </div>
         </div>
         <hr class="border-secondary-subtle">
-        <div class="small text-center">&copy; <?= date('Y') ?> BelanjaKu &middot; Hosea Felix Sanjaya (5025241177)</div>
+        <div class="small text-center">&copy; <?= date('Y') ?> ShopEase &middot; Hosea Felix Sanjaya (5025241177)</div>
     </div>
 </footer>

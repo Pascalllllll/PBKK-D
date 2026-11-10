@@ -1,4 +1,4 @@
-# Week 10 - Routing, Controller, dan View CodeIgniter 4: Toko Online BelanjaKu
+# Week 10 - Routing, Controller, dan View CodeIgniter 4: Toko Online ShopEase
 
 **Nama**: Hosea Felix Sanjaya  
 **NRP**: 5025241177  
@@ -6,7 +6,7 @@
 
 | | |
 | :-- | :-- |
-| Kode | folder [`belanjaku/`](./belanjaku) (CodeIgniter 4.7.6, PHP 8.3) |
+| Kode | folder [`shopease/`](./shopease) (CodeIgniter 4.7.6, PHP 8.3) |
 | Menjalankan | [`run.sh`](./run.sh) (Docker: PHP 8.3 + Apache, MariaDB 11) |
 | Tampilan | Bootstrap 5.3, Bootstrap Icons, Chart.js 4 (dari CDN jsDelivr) |
 
@@ -14,7 +14,7 @@
 
 Minggu ini materi berfokus pada tiga lapisan CodeIgniter yang dilewati setiap request: **Routing**, **Controller**, dan **View**. Materi tersebut diterapkan pada aplikasi toko online yang alurnya lengkap, dari katalog sampai pesanan selesai:
 
-| No | Kebutuhan | Penerapan di BelanjaKu |
+| No | Kebutuhan | Penerapan di ShopEase |
 | :-: | :-- | :-- |
 | 1 | Halaman publik | Beranda, tentang, kontak, katalog (cari, filter kategori, urutkan, paginasi), detail produk |
 | 2 | Autentikasi | Daftar akun pelanggan, masuk, keluar. Password di-hash, ID session diganti saat login |
@@ -28,7 +28,7 @@ Minggu ini materi berfokus pada tiga lapisan CodeIgniter yang dilewati setiap re
 
 ## Pendahuluan
 
-BelanjaKu adalah toko online yang menjual perlengkapan kuliah dan kebutuhan harian. Alurnya mengikuti toko yang memakai transfer bank manual:
+ShopEase adalah toko online yang menjual perlengkapan kuliah dan kebutuhan harian. Alurnya mengikuti toko yang memakai transfer bank manual:
 
 1. Pelanggan memasukkan produk ke keranjang lalu checkout dengan memilih alamat.
 2. Pelanggan mentransfer dan mengunggah bukti pembayaran.
@@ -46,13 +46,13 @@ Ada tiga role:
 
 Week 09 sudah membuat toko online sederhana. Week 10 dibuat sebagai aplikasi baru yang lebih lengkap. Perbedaan utamanya:
 
-| | Week 09 (Toko Online) | Week 10 (BelanjaKu) |
+| | Week 09 (Toko Online) | Week 10 (ShopEase) |
 | :-- | :-- | :-- |
 | Role | admin, customer | admin, gudang, customer |
 | Keranjang | Session, boleh tanpa login | Tabel `keranjang`, tetap ada setelah logout |
 | Pembayaran | Status diubah admin | Unggah bukti transfer, verifikasi terima/tolak dengan alasan |
 | Pengiriman | Hanya status | Tabel `pengiriman`: kurir, resi, petugas, waktu kirim dan diterima |
-| URL | ID angka (`/produk/3`) | Slug (`/produk/kaos-polos-cotton-combed`) dan kode pesanan (`/pesanan/BK-261110-4ECP`) |
+| URL | ID angka (`/produk/3`) | Slug (`/produk/kaos-polos-cotton-combed`) dan kode pesanan (`/pesanan/SE-261110-9H84`) |
 | Pembuatan URL di view | `site_url('...')` | Named route: `url_to('pesanan.detail', $kode)` |
 | Akses ditolak | Redirect dengan pesan | Halaman 403 dengan status HTTP 403, URL tidak berubah |
 | Tampilan | Bootstrap 4 + SB Admin 2 | Bootstrap 5 dengan layout toko dan layout panel sendiri |
@@ -65,9 +65,9 @@ Week-10/
 ├── run.sh                       # up | start | stop | reset
 ├── docker/
 │   ├── Dockerfile               # php:8.3-apache + intl, mysqli, gd, mod_rewrite
-│   └── init.sql                 # database ci_belanjaku + user pbkk
+│   └── init.sql                 # database ci_shopease + user pbkk
 ├── img/                         # screenshot hasil
-└── belanjaku/
+└── shopease/
     ├── env.docker               # disalin run.sh menjadi .env
     ├── app/
     │   ├── Config/
@@ -91,7 +91,7 @@ Week-10/
     │   ├── Helpers/app_helper.php      # rupiah(), tanggal(), badge_status(), menu_aktif(), ...
     │   ├── Database/
     │   │   ├── Migrations/      # 9 tabel dengan foreign key
-    │   │   └── Seeds/           # BelanjaSeeder + img/ (gambar produk contoh)
+    │   │   └── Seeds/           # ShopEaseSeeder + img/ (gambar produk contoh)
     │   └── Views/
     │       ├── layouts/         # toko.php, panel.php, _head, _navbar, _footer, _alerts, _scripts
     │       ├── komponen/        # kartu_produk, item_pesanan, langkah, pager
@@ -99,7 +99,7 @@ Week-10/
     │       ├── panel/           # dashboard, kategori/, produk/, pesanan/, pembayaran/, laporan/
     │       └── errors/          # terlarang.php (403), tidak_ditemukan.php (404)
     ├── public/
-    │   ├── css/belanjaku.css
+    │   ├── css/shopease.css
     │   ├── img/tanpa-gambar.svg
     │   └── uploads/produk/      # gambar produk (publik)
     └── writable/uploads/bukti/  # bukti transfer (tidak bisa diakses langsung)
@@ -129,7 +129,7 @@ pesanan  1 ── 1 pengiriman     (diinput_oleh -> users, SET NULL)
 ```
 
 ```php
-// app/Database/Migrations/2026-11-10-000001_CreateBelanjaTables.php
+// app/Database/Migrations/2026-11-10-000001_CreateShopEaseTables.php
 $this->forge->addUniqueKey(['user_id', 'produk_id']);          // satu baris keranjang per produk
 $this->forge->addForeignKey('produk_id', 'produk', 'id', 'CASCADE', 'CASCADE');
 $this->forge->createTable('keranjang');
@@ -144,13 +144,13 @@ $this->forge->createTable('pesanan_item');
 Lingkungan sama dengan Week 09: image `php:8.3-apache` dan `mariadb:11`, dijalankan dengan `docker run` biasa karena plugin Compose tidak terpasang. Container Week 10 memakai nama dan port sendiri (`pbkk10-app` di port 8090, `pbkk10-db` di port 3310), jadi bisa berjalan bersamaan dengan Week 09.
 
 ```ini
-# belanjaku/env.docker -> .env
+# shopease/env.docker -> .env
 CI_ENVIRONMENT = development
 app.baseURL = 'http://localhost:8090/'
 app.indexPage = ''
 
 database.default.hostname = pbkk10-db
-database.default.database = ci_belanjaku
+database.default.database = ci_shopease
 database.default.username = pbkk
 database.default.password = pbkk123
 database.default.DBDriver = MySQLi
@@ -165,14 +165,14 @@ cd Week-10
 ```
 
 ```
-BelanjaKu -> http://localhost:8090
+ShopEase -> http://localhost:8090
 ```
 
 Di dalam `run.sh`, migration dan seeder dijalankan dengan spark:
 
 ```bash
 docker exec -u "$UIDGID" pbkk10-app php spark migrate --all
-docker exec -u "$UIDGID" pbkk10-app php spark db:seed BelanjaSeeder
+docker exec -u "$UIDGID" pbkk10-app php spark db:seed ShopEaseSeeder
 ```
 
 Seeder mengisi 6 kategori, 18 produk (2 di antaranya nonaktif), 5 akun, buku alamat, dan 8 pesanan dalam 7 hari terakhir dengan status berbeda-beda. Pesanan contoh dibuat lewat `AlurPesanan` yang sama dengan yang dipakai aplikasi, jadi stok, pembayaran, dan pengirimannya konsisten. Bukti transfer contoh digambar dengan GD.
@@ -181,8 +181,8 @@ Akun untuk mencoba:
 
 | Role | Email | Password |
 | :-- | :-- | :-- |
-| Admin | `admin@belanjaku.test` | `admin123` |
-| Staf gudang | `gudang@belanjaku.test` | `gudang123` |
+| Admin | `admin@shopease.test` | `admin123` |
+| Staf gudang | `gudang@shopease.test` | `gudang123` |
 | Pelanggan | `budi@mail.test`, `sari@mail.test`, `andi@mail.test` | `budi1234`, `sari1234`, `andi1234` |
 
 ### 3. Kendala dan Solusi
@@ -263,7 +263,7 @@ Penjelasan:
 - `auth:admin,gudang`: argumen filter dipisah koma dan diterima `AuthFilter` sebagai array role yang diizinkan.
 - Prefix `panel` dipakai dua group dengan filter berbeda. Staf gudang bisa membuka `/panel/pesanan`, tetapi `/panel/produk` menghasilkan 403.
 - `(:num)` hanya menerima angka (ID di panel). `(:segment)` menerima satu segmen apa pun, dipakai untuk slug produk dan kode pesanan.
-- Pelanggan membuka pesanan lewat kode (`/pesanan/BK-261110-4ECP`), bukan ID. ID berurutan mudah ditebak, sedangkan kode memakai 4 karakter acak. Walaupun begitu, controller tetap mengecek pemiliknya.
+- Pelanggan membuka pesanan lewat kode (`/pesanan/SE-261110-9H84`), bukan ID. ID berurutan mudah ditebak, sedangkan kode memakai 4 karakter acak. Walaupun begitu, controller tetap mengecek pemiliknya.
 - `set404Override` mengarahkan route yang tidak ada, dan `PageNotFoundException` dari controller, ke `Beranda::tidakDitemukan` yang memakai layout toko.
 
 ### 3. Peta Route
@@ -444,7 +444,7 @@ Urutannya:
 2. Kunci baris keranjang (`FOR UPDATE`). Ini mencegah checkout ganda jika tombol ditekan dua kali atau dua tab mengirim bersamaan.
 3. Kunci setiap baris produk, tolak jika produk nonaktif atau stok kurang.
 4. Hitung ulang subtotal dari harga di database, tambahkan ongkir.
-5. Simpan `pesanan` (kode `BK-yymmdd-XXXX`), `pesanan_item` (snapshot nama dan harga), kurangi stok.
+5. Simpan `pesanan` (kode `SE-yymmdd-XXXX`), `pesanan_item` (snapshot nama dan harga), kurangi stok.
 6. Buat baris `pembayaran` berstatus `belum`, kosongkan keranjang.
 
 Jika satu langkah gagal, `transaksi()` memanggil `transRollback()`: tidak ada pesanan yang setengah jadi, stok tidak berkurang, dan keranjang tetap utuh. Controller menangkap `RuntimeException` dan menampilkan pesannya di halaman keranjang.
@@ -624,7 +624,7 @@ Layout panel punya sidebar dan topbar, plus dua section tambahan: `subjudul` di 
 
 | File | Dipakai di | Isi |
 | :-- | :-- | :-- |
-| `layouts/_head.php` | kedua layout | Meta, judul `{title} · BelanjaKu`, font, Bootstrap, ikon, CSS |
+| `layouts/_head.php` | kedua layout | Meta, judul `{title} · ShopEase`, font, Bootstrap, ikon, CSS |
 | `layouts/_navbar.php` | toko | Menu, pencarian, ikon keranjang dengan jumlah barang, menu akun |
 | `layouts/_footer.php` | toko | Tautan, info gratis ongkir, nama dan NRP |
 | `layouts/_alerts.php` | kedua layout | Flash `success`/`info`/`warning`/`error` dan daftar error validasi |
@@ -691,24 +691,24 @@ Contoh lengkap: Budi membeli 1 Keyboard Mekanikal TKL (Rp459.000) dan 2 Mouse Wi
 | 4 | `POST /keranjang` | `Keranjang::tambah` | `keranjang`: baris mouse qty 2 |
 | 5 | `POST /keranjang` (power bank 5, stok 3) | `Keranjang::tambah` | Ditolak, tidak ada perubahan |
 | 6 | `GET /checkout` | `Checkout::index` | Baca `keranjang` + `produk` + `alamat`. Subtotal Rp717.000, ongkir gratis |
-| 7 | `POST /checkout` | `Checkout::proses` → `AlurPesanan::checkout` | Satu transaksi: `pesanan` (BK-261110-4ECP), 2 `pesanan_item`, stok keyboard 9 → 8 dan mouse 24 → 22, `pembayaran` (`belum`), `keranjang` dikosongkan |
-| 8 | `POST /pesanan/BK-261110-4ECP/bayar` | `Pesanan::bayar` → `unggahBukti` | File di `writable/uploads/bukti/`; `pembayaran` → `menunggu`; `pesanan` → `menunggu_verifikasi` |
+| 7 | `POST /checkout` | `Checkout::proses` → `AlurPesanan::checkout` | Satu transaksi: `pesanan` (SE-261110-9H84), 2 `pesanan_item`, stok keyboard 9 → 8 dan mouse 24 → 22, `pembayaran` (`belum`), `keranjang` dikosongkan |
+| 8 | `POST /pesanan/SE-261110-9H84/bayar` | `Pesanan::bayar` → `unggahBukti` | File di `writable/uploads/bukti/`; `pembayaran` → `menunggu`; `pesanan` → `menunggu_verifikasi` |
 | 9 | `POST /panel/pembayaran/9/terima` | `Panel\Pembayaran::terima` → `verifikasi` | `pembayaran` → `diterima`, `diverifikasi_oleh` = admin; `pesanan` → `diproses` |
 | 10 | `POST /panel/pesanan/9/kirim` | `Panel\Pesanan::kirim` → `kirim` | `pengiriman`: SiCepat 004589127733, `diinput_oleh` = staf gudang; `pesanan` → `dikirim` |
-| 11 | `POST /pesanan/BK-261110-4ECP/diterima` | `Pesanan::diterima` → `selesai` | `pesanan` → `selesai`; `pengiriman.diterima_at` diisi |
+| 11 | `POST /pesanan/SE-261110-9H84/diterima` | `Pesanan::diterima` → `selesai` | `pesanan` → `selesai`; `pengiriman.diterima_at` diisi |
 
 Satu request POST melewati lapisan berikut:
 
 ```
 Pelanggan klik "Kirim Bukti Pembayaran" (form_open_multipart + csrf_field)
-      │  POST /pesanan/BK-261110-4ECP/bayar
+      │  POST /pesanan/SE-261110-9H84/bayar
       ▼
 Filter global csrf  ──(token salah/tidak ada)──► 403
       │
 Filter auth:customer (AuthFilter)
       │  belum login ─► /masuk        role lain ─► halaman 403
       ▼
-Router: Pesanan::bayar('BK-261110-4ECP')
+Router: Pesanan::bayar('SE-261110-9H84')
       │  milikSendiri(): pesanan bukan milik user ─► 404
       │  validate(): bank, nama rekening, file gambar ≤ 2 MB ─► kembali ke form + errors
       │  move() ke writable/uploads/bukti/<nama acak>.png

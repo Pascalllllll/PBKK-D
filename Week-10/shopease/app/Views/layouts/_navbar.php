@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-toko sticky-top py-2">
     <div class="container">
-        <a class="navbar-brand brand fs-4" href="<?= url_to('beranda') ?>"><i class="bi bi-bag-heart-fill me-1"></i>Belanja<span>Ku</span></a>
+        <a class="navbar-brand brand fs-4" href="<?= url_to('beranda') ?>"><i class="bi bi-bag-heart-fill me-1"></i>Shop<span>Ease</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navToko" aria-controls="navToko" aria-expanded="false" aria-label="Menu">
             <span class="navbar-toggler-icon"></span>
         </button>

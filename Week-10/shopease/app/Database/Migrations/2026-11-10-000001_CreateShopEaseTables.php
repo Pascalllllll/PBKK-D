@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateBelanjaTables extends Migration
+class CreateShopEaseTables extends Migration
 {
     private function id(): array
     {

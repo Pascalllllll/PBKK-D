@@ -4,8 +4,8 @@
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <div class="kotak p-4 p-md-5">
-            <h1 class="h3 fw-bold mb-3">Tentang BelanjaKu</h1>
-            <p>BelanjaKu adalah toko online sederhana yang menjual perlengkapan kuliah, elektronik kecil, pakaian, dan kebutuhan harian. Aplikasi ini dibuat sebagai tugas Week 10 mata kuliah Pemrograman Berbasis Kerangka Kerja (D) untuk mempraktikkan Router, Controller, dan View pada CodeIgniter 4.</p>
+            <h1 class="h3 fw-bold mb-3">Tentang ShopEase</h1>
+            <p>ShopEase adalah toko online sederhana yang menjual perlengkapan kuliah, elektronik kecil, pakaian, dan kebutuhan harian. Aplikasi ini dibuat sebagai tugas Week 10 mata kuliah Pemrograman Berbasis Kerangka Kerja (D) untuk mempraktikkan Router, Controller, dan View pada CodeIgniter 4.</p>
             <h2 class="h6 fw-bold mt-4">Cara belanja</h2>
             <ol class="mb-4">
                 <li>Pilih produk di katalog, lalu masukkan ke keranjang (perlu akun pelanggan).</li>

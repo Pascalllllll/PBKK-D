@@ -11,15 +11,15 @@ use App\Models\ProdukModel;
 use App\Models\UserModel;
 use CodeIgniter\Database\Seeder;
 
-class BelanjaSeeder extends Seeder
+class ShopEaseSeeder extends Seeder
 {
     public function run()
     {
         helper('app');
 
         $users = model(UserModel::class)->skipValidation(true);
-        $admin  = $users->insert(['nama' => 'Admin BelanjaKu', 'email' => 'admin@belanjaku.test', 'password' => 'admin123', 'role' => 'admin']);
-        $gudang = $users->insert(['nama' => 'Rudi Hartono', 'email' => 'gudang@belanjaku.test', 'password' => 'gudang123', 'role' => 'gudang']);
+        $admin  = $users->insert(['nama' => 'Admin ShopEase', 'email' => 'admin@shopease.test', 'password' => 'admin123', 'role' => 'admin']);
+        $gudang = $users->insert(['nama' => 'Rudi Hartono', 'email' => 'gudang@shopease.test', 'password' => 'gudang123', 'role' => 'gudang']);
         $budi   = $users->insert(['nama' => 'Budi Santoso', 'email' => 'budi@mail.test', 'telepon' => '081234567890', 'password' => 'budi1234', 'role' => 'customer']);
         $sari   = $users->insert(['nama' => 'Sari Wulandari', 'email' => 'sari@mail.test', 'telepon' => '082233445566', 'password' => 'sari1234', 'role' => 'customer']);
         $andi   = $users->insert(['nama' => 'Andi Pratama', 'email' => 'andi@mail.test', 'telepon' => '085711223344', 'password' => 'andi1234', 'role' => 'customer']);
@@ -78,8 +78,8 @@ class BelanjaSeeder extends Seeder
             }
             $p = $alur->checkout($user, $alamatId, null);
             $p['waktu'] = date('Y-m-d', strtotime("-{$hariLalu} days")) . " {$jam}";
-            // Kode pesanan ikut memakai tanggal pesanan: BK-yymmdd-XXXX
-            $p['kode'] = 'BK-' . date('ymd', strtotime($p['waktu'])) . substr($p['kode'], 9);
+            // Kode pesanan ikut memakai tanggal pesanan: SE-yymmdd-XXXX
+            $p['kode'] = 'SE-' . date('ymd', strtotime($p['waktu'])) . substr($p['kode'], 9);
             $this->db->table('pesanan')->where('id', $p['id'])->update(['kode' => $p['kode'], 'created_at' => $p['waktu'], 'updated_at' => $p['waktu']]);
 
             return $p;
@@ -168,7 +168,7 @@ class BelanjaSeeder extends Seeder
         $baris = [
             ['Tanggal', date('d/m/Y H:i', $waktu)],
             ['Dari', mb_strimwidth($nama, 0, 16, '.')],
-            ['Ke', 'BelanjaKu'],
+            ['Ke', 'ShopEase'],
             ['No. Rek', '1234567890'],
             ['Jumlah', 'Rp' . number_format($jumlah, 0, ',', '.')],
             ['Ref', strtoupper(bin2hex(random_bytes(4)))],

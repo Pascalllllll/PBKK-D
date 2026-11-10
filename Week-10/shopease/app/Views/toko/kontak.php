@@ -5,11 +5,11 @@
     <div class="col-lg-5">
         <div class="kotak p-4 h-100">
             <h1 class="h3 fw-bold mb-3">Hubungi Kami</h1>
-            <p class="text-secondary">Ada pertanyaan soal pesanan atau produk? Sertakan kode pesanan (contoh <code>BK-261110-7Q3F</code>) supaya kami cepat mengecek.</p>
+            <p class="text-secondary">Ada pertanyaan soal pesanan atau produk? Sertakan kode pesanan (contoh <code>SE-261110-7Q3F</code>) supaya kami cepat mengecek.</p>
             <ul class="list-unstyled mb-0">
                 <li class="mb-3"><i class="bi bi-geo-alt text-success me-2"></i>Jl. Teknik Kimia, Keputih, Sukolilo, Surabaya 60111</li>
                 <li class="mb-3"><i class="bi bi-whatsapp text-success me-2"></i>0812-3456-7890 (chat saja)</li>
-                <li class="mb-3"><i class="bi bi-envelope text-success me-2"></i>halo@belanjaku.test</li>
+                <li class="mb-3"><i class="bi bi-envelope text-success me-2"></i>halo@shopease.test</li>
                 <li><i class="bi bi-clock text-success me-2"></i>Senin–Sabtu, 08.00–17.00 WIB</li>
             </ul>
         </div>
@@ -19,7 +19,7 @@
             <h2 class="h5 fw-bold mb-3">Rekening pembayaran</h2>
             <div class="row g-3">
                 <?php foreach ([['BCA', '123 456 7890'], ['Mandiri', '140 00 1234567 8'], ['BNI', '098 765 4321']] as [$bank, $no]): ?>
-                    <div class="col-md-4"><div class="border rounded-3 p-3"><div class="fw-bold"><?= $bank ?></div><div class="font-monospace"><?= $no ?></div><div class="small text-secondary">a.n. BelanjaKu</div></div></div>
+                    <div class="col-md-4"><div class="border rounded-3 p-3"><div class="fw-bold"><?= $bank ?></div><div class="font-monospace"><?= $no ?></div><div class="small text-secondary">a.n. ShopEase</div></div></div>
                 <?php endforeach ?>
             </div>
             <h2 class="h5 fw-bold mt-4 mb-2">Pertanyaan umum</h2>

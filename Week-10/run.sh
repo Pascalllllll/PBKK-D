@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Menjalankan BelanjaKu (port 8090) dan MariaDB dengan Docker.
+# Menjalankan ShopEase (port 8090) dan MariaDB dengan Docker.
 #   ./run.sh up      build image, jalankan container, composer install, migrate + seed
 #   ./run.sh start   jalankan lagi container yang sudah ada
 #   ./run.sh stop    hentikan container
@@ -39,23 +39,23 @@ up() {
 
   ada $APP || docker run -d --name $APP --network $NET -e TZ=Asia/Jakarta \
     -e APACHE_RUN_USER="#$(id -u)" -e APACHE_RUN_GROUP="#$(id -g)" \
-    -v "$PWD/belanjaku":/var/www/html -p "127.0.0.1:$PORT:80" $IMG >/dev/null
+    -v "$PWD/shopease":/var/www/html -p "127.0.0.1:$PORT:80" $IMG >/dev/null
   docker start $APP >/dev/null
   docker exec -u "$UIDGID" -e COMPOSER_HOME=/tmp $APP bash -c \
     'cd /var/www/html && { [ -d vendor ] || composer install --no-interaction --quiet; } && { [ -f .env ] || cp env.docker .env; }
      mkdir -p public/uploads/produk writable/uploads/bukti'
   docker exec -u "$UIDGID" $APP php spark migrate --all
-  if [ $baru = 1 ]; then docker exec -u "$UIDGID" $APP php spark db:seed BelanjaSeeder; fi
+  if [ $baru = 1 ]; then docker exec -u "$UIDGID" $APP php spark db:seed ShopEaseSeeder; fi
 
   echo
-  echo "BelanjaKu -> http://localhost:$PORT"
+  echo "ShopEase -> http://localhost:$PORT"
 }
 
 case "${1:-up}" in
   up)    up ;;
   start) docker start $DB >/dev/null; wait_db
          docker start $APP >/dev/null
-         echo "BelanjaKu -> http://localhost:$PORT" ;;
+         echo "ShopEase -> http://localhost:$PORT" ;;
   stop)  docker stop $APP $DB >/dev/null ;;
   reset) ada $APP && docker exec $APP find public/uploads writable/uploads -type f ! -name .gitignore ! -name index.html -delete
          docker rm -f $APP $DB >/dev/null 2>&1 || true

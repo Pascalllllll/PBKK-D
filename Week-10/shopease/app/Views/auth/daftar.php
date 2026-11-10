@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-check mb-4">
                     <input class="form-check-input<?= invalid('setuju') ?>" type="checkbox" id="setuju" name="setuju" value="1" <?= old('setuju') ? 'checked' : '' ?>>
-                    <label class="form-check-label small" for="setuju">Saya setuju dengan syarat dan ketentuan BelanjaKu.</label>
+                    <label class="form-check-label small" for="setuju">Saya setuju dengan syarat dan ketentuan ShopEase.</label>
                     <?= field_error('setuju') ?>
                 </div>
                 <button class="btn btn-primary w-100 py-2">Daftar</button>
