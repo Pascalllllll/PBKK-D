@@ -63,7 +63,7 @@
 </details>
 
 <details>
-<summary>Week 11</summary>
+<summary>Week 11 - Sistem Autentikasi CodeIgniter 4: ShopEase</summary>
 
 [Week 11](./Week-11/README.md)
 
