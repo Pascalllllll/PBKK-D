@@ -1,0 +1,69 @@
+<?php $admin = user('role') === 'admin'; ?>
+<!doctype html>
+<html lang="id">
+<head>
+    <?= $this->include('layouts/_head') ?>
+</head>
+<body>
+<div class="panel-wrap">
+<aside class="panel-sidebar p-3"><div class="isi">
+    <div class="d-flex align-items-center justify-content-between mb-lg-3">
+        <a class="brand fs-4 text-decoration-none px-2 d-block" href="<?= url_to('panel') ?>" style="color:#5eead4!important"><i class="bi bi-bag-heart-fill me-1"></i>Shop<span>Ease</span></a>
+        <button class="btn btn-sm text-white d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#menuPanel" aria-controls="menuPanel" aria-expanded="false" aria-label="Menu"><i class="bi bi-list fs-4"></i></button>
+    </div>
+    <nav class="nav flex-column gap-1 collapse d-lg-flex mt-2 mt-lg-0" id="menuPanel">
+        <a class="nav-link<?= menu_aktif('/panel', true) ?>" href="<?= url_to('panel') ?>"><i class="bi bi-speedometer2"></i>Dashboard</a>
+
+        <div class="judul-menu">Transaksi</div>
+        <a class="nav-link<?= menu_aktif('/panel/pesanan') ?>" href="<?= url_to('panel.pesanan') ?>"><i class="bi bi-receipt"></i><?= $admin ? 'Pesanan' : 'Antrean Pengiriman' ?></a>
+        <?php if ($admin): ?>
+            <a class="nav-link<?= menu_aktif('/panel/pembayaran') ?>" href="<?= url_to('panel.pembayaran') ?>"><i class="bi bi-cash-coin"></i>Verifikasi Bayar
+                <?php if ($n = menunggu_verifikasi()): ?><span class="badge rounded-pill text-bg-warning ms-auto"><?= $n ?></span><?php endif ?>
+            </a>
+            <a class="nav-link<?= menu_aktif('/panel/laporan') ?>" href="<?= url_to('panel.laporan') ?>"><i class="bi bi-graph-up"></i>Laporan</a>
+
+            <div class="judul-menu">Katalog</div>
+            <a class="nav-link<?= menu_aktif('/panel/kategori') ?>" href="<?= url_to('panel.kategori') ?>"><i class="bi bi-tags"></i>Kategori</a>
+            <a class="nav-link<?= menu_aktif('/panel/produk') ?>" href="<?= url_to('panel.produk') ?>"><i class="bi bi-box-seam"></i>Produk</a>
+        <?php endif ?>
+
+        <div class="judul-menu">Akun</div>
+        <?php if ($admin): ?>
+            <a class="nav-link<?= menu_aktif('/panel/pengguna') ?>" href="<?= url_to('panel.pengguna') ?>"><i class="bi bi-people"></i>Pengguna</a>
+            <a class="nav-link<?= menu_aktif('/panel/log-masuk') ?>" href="<?= url_to('panel.log') ?>"><i class="bi bi-clock-history"></i>Riwayat Masuk</a>
+        <?php endif ?>
+        <a class="nav-link<?= menu_aktif('/akun') ?>" href="<?= url_to('akun') ?>"><i class="bi bi-person-gear"></i>Akun Saya</a>
+
+        <div class="judul-menu">Toko</div>
+        <?php if ($admin): ?>
+            <a class="nav-link<?= menu_aktif('/panel/pengaturan') ?>" href="<?= url_to('panel.pengaturan') ?>"><i class="bi bi-gear"></i>Pengaturan<?= toko()->checkoutSiap() ? '' : ' <span class="badge text-bg-warning ms-auto">!</span>' ?></a>
+        <?php endif ?>
+        <a class="nav-link" href="<?= url_to('beranda') ?>" target="_blank"><i class="bi bi-shop"></i>Lihat toko</a>
+    </nav>
+</div></aside>
+
+<div class="panel-main d-flex flex-column">
+    <header class="panel-topbar px-3 px-md-4 py-3 d-flex flex-wrap gap-2 align-items-center justify-content-between">
+        <div>
+            <h1 class="h5 fw-bold mb-0"><?= esc($title) ?></h1>
+            <?= $this->renderSection('subjudul') ?>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <?= $this->renderSection('aksi') ?>
+            <a class="text-end small lh-sm text-decoration-none text-body" href="<?= url_to('akun') ?>">
+                <div class="fw-semibold"><?= esc(user('nama')) ?></div>
+                <span class="badge <?= $admin ? 'text-bg-primary' : 'text-bg-warning' ?>"><?= label_role(user('role')) ?></span>
+            </a>
+            <?= form_open(url_to('keluar')) ?><button class="btn btn-sm btn-outline-danger" title="Keluar" aria-label="Keluar"><i class="bi bi-box-arrow-right"></i></button><?= form_close() ?>
+        </div>
+    </header>
+    <main class="p-3 p-md-4 flex-grow-1">
+        <?= $this->include('layouts/_alerts') ?>
+        <?= $this->renderSection('content') ?>
+    </main>
+</div>
+</div>
+<?= $this->include('layouts/_scripts') ?>
+<?= $this->renderSection('scripts') ?>
+</body>
+</html>

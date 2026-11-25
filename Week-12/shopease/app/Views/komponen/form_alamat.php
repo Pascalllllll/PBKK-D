@@ -1,0 +1,9 @@
+<?php /** Isi form alamat (tanpa tag form). $a = baris alamat yang diubah, atau null untuk alamat baru. */ $a ??= null; ?>
+<div class="row g-2">
+    <div class="col-md-4"><label class="form-label small" for="label">Label</label><input class="form-control form-control-sm<?= invalid('label') ?>" id="label" name="label" value="<?= old('label', $a['label'] ?? '') ?>" placeholder="Rumah / Kos"><?= field_error('label') ?></div>
+    <div class="col-md-4"><label class="form-label small" for="penerima">Penerima</label><input class="form-control form-control-sm<?= invalid('penerima') ?>" id="penerima" name="penerima" value="<?= old('penerima', $a['penerima'] ?? user('nama')) ?>"><?= field_error('penerima') ?></div>
+    <div class="col-md-4"><label class="form-label small" for="telepon">Nomor HP</label><input class="form-control form-control-sm<?= invalid('telepon') ?>" id="telepon" name="telepon" value="<?= old('telepon', $a['telepon'] ?? '') ?>"><?= field_error('telepon') ?></div>
+    <div class="col-12"><label class="form-label small" for="alamat">Alamat lengkap</label><input class="form-control form-control-sm<?= invalid('alamat') ?>" id="alamat" name="alamat" value="<?= old('alamat', $a['alamat'] ?? '') ?>" placeholder="Jalan, nomor, RT/RW, kelurahan"><?= field_error('alamat') ?></div>
+    <div class="col-md-8"><label class="form-label small" for="kota">Kota</label><input class="form-control form-control-sm<?= invalid('kota') ?>" id="kota" name="kota" value="<?= old('kota', $a['kota'] ?? '') ?>"><?= field_error('kota') ?></div>
+    <div class="col-md-4"><label class="form-label small" for="kode_pos">Kode pos</label><input class="form-control form-control-sm<?= invalid('kode_pos') ?>" id="kode_pos" name="kode_pos" value="<?= old('kode_pos', $a['kode_pos'] ?? '') ?>" inputmode="numeric"><?= field_error('kode_pos') ?></div>
+</div>
